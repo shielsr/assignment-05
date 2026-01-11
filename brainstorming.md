@@ -1,6 +1,12 @@
 # What to build
     Fan fiction (fanfic) story website
 
+# Name ideas
+Fanfictionary
+Fanficky
+Fanfiki
+Fanficula
+
 # Goals
 
 ## User mgmt:
@@ -61,4 +67,3 @@ Story -> Chapter        One to many
 Story -> Tag            Many to many
 User -> Conversation    Many to many
 Conversation -> Message One to many
-
