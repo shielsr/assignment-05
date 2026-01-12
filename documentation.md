@@ -7,3 +7,7 @@ The following is a step-by-step account of how I did the project, which closely 
 - Brainstormed initial ideas for the assignment
 - Wrote user stories
 - Designed the database schema
+- Set up the Django environment as per the tutorials
+- Created superuser
+- Created the first model, Story, and added some stories via a shell
+- Updated the homepage to loop through stories

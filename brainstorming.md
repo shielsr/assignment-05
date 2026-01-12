@@ -67,3 +67,7 @@ Story -> Chapter        One to many
 Story -> Tag            Many to many
 User -> Conversation    Many to many
 Conversation -> Message One to many
+
+
+# Story
+(title, author, summary, fandom, rating, co_author, status, content, date_published)

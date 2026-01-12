@@ -1,8 +1,8 @@
 {% extends "stories/base.html" %}
 {% block content %}
-{% for post in posts %}
-    <h2>{{ post.title }}</h2>
-    <p>By {{ post.author }} on {{ post.date_posted }}</p>
-    <p>{{ post.content }}</p>
+{% for story in stories %}
+    <h2>{{ story.title }}</h2>
+    <p>By {{ story.author }} on {{ story.date_published|date:'dS, F, Y' }}</p>
+    <p>{{ story.content }}</p>
 {% endfor %}
 {% endblock content %}
