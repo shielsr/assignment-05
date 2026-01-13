@@ -11,3 +11,5 @@ The following is a step-by-step account of how I did the project, which closely 
 - Created superuser
 - Created the first model, Story, and added some stories via a shell
 - Updated the homepage to loop through stories
+- Set up Registration page and successfully registered new users
+- Installed Crispy Forms with Bootstrap styling
