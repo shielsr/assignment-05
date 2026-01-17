@@ -1,8 +1,24 @@
 {% extends "stories/base.html" %}
 {% block content %}
 {% for story in stories %}
-    <h2>{{ story.title }}</h2>
+<!--    <h2>{{ story.title }}</h2>
     <p>By {{ story.author }} on {{ story.date_published|date:'dS, F, Y' }}</p>
     <p>{{ story.content }}</p>
+-->
+
+    <article class="media content-section">
+            <img class="rounded-circle article-img" src="{{ story.author.profile.image.url }}">
+            <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ story.author }}</a>
+                <small class="text-muted">{{ story.date_posted|date:'dS, F, Y' }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ story.title }}</a></h2>
+            <p class="article-content">{{ story.content }}</p>
+            </div>
+        </article>
+
+
+        
 {% endfor %}
 {% endblock content %}

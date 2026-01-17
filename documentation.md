@@ -14,4 +14,4 @@ The following is a step-by-step account of how I did the project, which closely 
 - Set up Registration page and successfully registered new users
 - Installed Crispy Forms with Bootstrap styling
 - Created login and logout pages and completed user authentication setup
-- Added profile pages and pictures
+- Added editable profile pages and resizable profile picture upload
