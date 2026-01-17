@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render
+from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin 
 from .models import Story
 from django.views.generic import (
     ListView,
@@ -8,14 +9,27 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin 
+
+
+User = get_user_model()
 
 class StoryListView(ListView):
     model = Story
     template_name = 'stories/home.html' #<app>/<model>_<viewtype>.html
     context_object_name = 'stories'
     ordering = ['-date_published']
+    paginate_by = 4
     
+class UserStoryListView(ListView):
+    model = Story
+    template_name = 'stories/user_stories.html'
+    context_object_name = 'stories'
+    paginate_by = 4
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return user.stories.order_by('-date_published')
+
 class StoryDetailView(DetailView):
     model = Story
 

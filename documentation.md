@@ -15,3 +15,6 @@ The following is a step-by-step account of how I did the project, which closely 
 - Installed Crispy Forms with Bootstrap styling
 - Created login and logout pages and completed user authentication setup
 - Added editable profile pages and resizable profile picture upload
+- Set up class-based views for CRUD operations
+- Pagination added
+- New page showing all of a user's stories

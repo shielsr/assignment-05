@@ -5,7 +5,8 @@ from .views import (
     StoryDetailView,
     StoryCreateView,
     StoryUpdateView,
-    StoryDeleteView
+    StoryDeleteView,
+    UserStoryListView,
 )
 from . import views
 
@@ -15,5 +16,6 @@ urlpatterns = [
     path('story/new/', StoryCreateView.as_view(), name='story-create'),
     path('story/<int:pk>/update/', StoryUpdateView.as_view(), name='story-update'),
     path('story/<int:pk>/delete/', StoryDeleteView.as_view(), name='story-delete'),
+    path('user/<str:username>', UserStoryListView.as_view(), name='user-stories'),
     path('about/',views.about, name='stories-about'),
 ]
