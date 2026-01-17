@@ -13,7 +13,7 @@
                 <a class="mr-2" href="#">{{ story.author }}</a>
                 <small class="text-muted">{{ story.date_posted|date:'dS, F, Y' }}</small>
             </div>
-            <h2><a class="article-title" href="#">{{ story.title }}</a></h2>
+            <h2><a class="article-title" href="{% url 'story-detail' story.id %}">{{ story.title }}</a></h2>
             <p class="article-content">{{ story.content }}</p>
             </div>
         </article>
