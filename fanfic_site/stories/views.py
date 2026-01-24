@@ -58,7 +58,7 @@ class ChapterDetailView(DetailView):
 
 class StoryCreateView(LoginRequiredMixin, CreateView):
     model = Story
-    fields = ['title', 'content']    
+    fields = ['title', 'genre', 'summary']   
     
     def form_valid(self, form):
         form.instance.author = self.request.user # Set the author on the form
@@ -66,7 +66,7 @@ class StoryCreateView(LoginRequiredMixin, CreateView):
 
 class StoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Story
-    fields = ['title', 'content']
+    fields = ['title', 'genre', 'summary']
 
     def form_valid(self, form):
         form.instance.author = self.request.user

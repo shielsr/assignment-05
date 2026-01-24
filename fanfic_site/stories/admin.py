@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Story, Chapter
+from .models import Story, Chapter, Genre
 
 # Inline editing of chapters inside a story
 class ChapterInline(admin.TabularInline):
@@ -10,4 +10,8 @@ class ChapterInline(admin.TabularInline):
 @admin.register(Story)
 class StoryAdmin(admin.ModelAdmin):
     inlines = [ChapterInline]
-    list_display = ("title", "author", "status", "date_published")
+    list_display = ("title", "author", "summary", "genre", "date_published")
+
+@admin.register(Genre)
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ('name',)

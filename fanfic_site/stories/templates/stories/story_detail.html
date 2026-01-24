@@ -6,9 +6,11 @@
     <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
     <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2" href="#">{{ object.author }}</a>
+            <a class="mr-2" href="{% url 'user-stories' story.author.username %}">{{ object.author }}</a>
             <small class="text-muted">{{ object.date_posted|date:'dS, F, Y' }}</small>
-            {% if object.author == user %}
+        </div>
+        <h2>{{ object.title }}</h2>
+        {% if object.author == user %}
             <div>
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'story-update' object.id %}">Update</a>
                 <!-- Changed here -->
@@ -16,9 +18,8 @@
                 <!-- Changed here -->
             </div>
             {% endif %}
-        </div>
-        <h2><a class="article-title" href="#">{{ object.title }}</a></h2>
-        <p class="article-content">{{ object.content }}</p>
+        <p class="article-summary">Summary: {{ object.summary }}</p>
+        <p class="article-genre">Genre: {{ object.genre }}</p>
         <h2>Chapters</h2>
         <ul>
             {% for chapter in object.chapters.all %}
@@ -32,7 +33,7 @@
             {% endfor %}
         </ul>
         {% if request.user == story.author %}
-        <a href="{% url 'add-chapter' story.id %}">Add New Chapter</a>
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'add-chapter' story.id %}">Add New Chapter</a>
         {% endif %}
     </div>
 </article>

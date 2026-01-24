@@ -1,16 +1,28 @@
 {% extends "stories/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 
-<h1>Add Chapter to "{{ story.title }}"</h1>
+<div class="content-section">
+    <form method="POST">
 
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Add Chapter</button>
-</form>
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Add Chapter to "{{ story.title }}"</legend> <!-- Text Changed here -->
 
-<a href="{% url 'story-detail' story.id %}">Back to Story</a>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">
+              Add chapter
+            </button>
+        </div>
+    </form>
+
+    <a href="{% url 'story-detail' story.id %}">Back to Story</a>
 
 
-{% endblock content %}
+
+
+
+    {% endblock content %}

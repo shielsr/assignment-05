@@ -1,7 +1,10 @@
 {% extends "stories/base.html" %}
 {% block content %}
 
-<h1>{{ object.story.title }}</h1>
+<a href="{% url 'story-detail' object.story.id %}">
+      ← Back to story
+    </a>
+<h1> <a class="article-title" href="{% url 'story-detail' object.story.id %}">{{ object.story.title }}</a></h1>
 <h2>Chapter {{ object.number }}: {{ object.title }}</h2>
 
 <div>

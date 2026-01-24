@@ -55,7 +55,7 @@ As a reader, I want to mark stories as 'read', so I can keep track of what I've 
 * Profile
 * Story
 * Chapter
-* Tag
+* Genre
 * Coversation
 * Message
 
@@ -64,7 +64,7 @@ As a reader, I want to mark stories as 'read', so I can keep track of what I've 
 User -> Profile         One to one
 User -> Story           One to many
 Story -> Chapter        One to many
-Story -> Tag            Many to many
+Story -> Genre            Many to many
 User -> Conversation    Many to many
 Conversation -> Message One to many
 
