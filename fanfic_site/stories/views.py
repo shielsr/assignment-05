@@ -1,7 +1,11 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin 
-from .models import Story
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
+
+from .models import Story, Chapter
+from .forms import ChapterForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -32,6 +36,25 @@ class UserStoryListView(ListView):
 
 class StoryDetailView(DetailView):
     model = Story
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['chapters'] = self.object.chapters.all()
+        return context
+
+class ChapterDetailView(DetailView):
+    model = Chapter
+    template_name = "stories/chapter_detail.html"
+
+    def get_object(self):
+        story_id = self.kwargs["story_id"]
+        number = self.kwargs["number"]
+
+        return get_object_or_404(
+            Chapter,
+            story_id=story_id,
+            number=number
+        )
 
 class StoryCreateView(LoginRequiredMixin, CreateView):
     model = Story
@@ -63,3 +86,25 @@ class StoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView): # Ne
 
 def about(request):
     return render(request, 'stories/about.html', {'title': 'About'})
+
+
+def AddChapter(request, story_id):
+    story = get_object_or_404(Story, id=story_id)
+
+    # Optional: check if current user is author
+    if request.user != story.author:
+        return render(request, 'stories/forbidden.html', status=403)
+
+    if request.method == 'POST':
+        form = ChapterForm(request.POST)
+        if form.is_valid():
+            chapter = form.save(commit=False)
+            chapter.story = story
+            chapter.save()
+            return redirect('chapter-detail', story_id=story.id, number=chapter.number)
+    else:
+        # Suggest the next chapter number automatically
+        next_number = story.chapters.count() + 1
+        form = ChapterForm(initial={'number': next_number})
+
+    return render(request, 'stories/add_chapter.html', {'form': form, 'story': story})

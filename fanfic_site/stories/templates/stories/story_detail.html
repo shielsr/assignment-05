@@ -19,6 +19,21 @@
         </div>
         <h2><a class="article-title" href="#">{{ object.title }}</a></h2>
         <p class="article-content">{{ object.content }}</p>
+        <h2>Chapters</h2>
+        <ul>
+            {% for chapter in object.chapters.all %}
+            <li>
+                <a href="{% url 'chapter-detail' object.id chapter.number %}">
+                    Chapter {{ chapter.number }}: {{ chapter.title }}
+                </a>
+            </li>
+            {% empty %}
+            <li>No chapters yet.</li>
+            {% endfor %}
+        </ul>
+        {% if request.user == story.author %}
+        <a href="{% url 'add-chapter' story.id %}">Add New Chapter</a>
+        {% endif %}
     </div>
 </article>
 

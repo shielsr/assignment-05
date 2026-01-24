@@ -18,3 +18,6 @@ The following is a step-by-step account of how I did the project, which closely 
 - Set up class-based views for CRUD operations
 - Pagination added
 - New page showing all of a user's stories
+- Set up a burner email account and created the Password Reset infrastructure
+- Swapped Bootstrap 5 for Bootstrap 4 to catch some legacy style classes
+- Created a new form for adding chapters, and allowed authors to add chapters to their stories

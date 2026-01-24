@@ -1,0 +1,27 @@
+{% extends "stories/base.html" %}
+{% block content %}
+
+<h1>{{ object.story.title }}</h1>
+<h2>Chapter {{ object.number }}: {{ object.title }}</h2>
+
+<div>
+  {{ object.content|linebreaks }}
+</div>
+
+<hr>
+
+<nav>
+  {% if object.number > 1 %}
+    <a href="{% url 'chapter-detail' object.story.id object.number|add:'-1' %}">
+      ← Previous
+    </a>
+  {% endif %}
+
+  {% if object.number < object.story.chapters.count %}
+    <a href="{% url 'chapter-detail' object.story.id object.number|add:'1' %}">
+      Next →
+    </a>
+  {% endif %}
+</nav>
+
+{% endblock content %}

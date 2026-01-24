@@ -1,5 +1,4 @@
 from django.urls import path
-from .views import StoryListView, StoryDetailView
 from .views import (
     StoryListView,
     StoryDetailView,
@@ -7,6 +6,8 @@ from .views import (
     StoryUpdateView,
     StoryDeleteView,
     UserStoryListView,
+    ChapterDetailView,
+    AddChapter,
 )
 from . import views
 
@@ -18,4 +19,7 @@ urlpatterns = [
     path('story/<int:pk>/delete/', StoryDeleteView.as_view(), name='story-delete'),
     path('user/<str:username>', UserStoryListView.as_view(), name='user-stories'),
     path('about/',views.about, name='stories-about'),
+    path("<int:pk>/", StoryDetailView.as_view(), name="story-detail"),
+    path("<int:story_id>/chapters/<int:number>/", ChapterDetailView.as_view(), name="chapter-detail"),
+    path('<int:story_id>/add-chapter/', AddChapter, name='add-chapter')
 ]
