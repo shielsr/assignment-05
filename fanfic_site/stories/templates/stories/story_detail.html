@@ -12,7 +12,7 @@
         <h2>{{ object.title }}</h2>
         {% if object.author == user %}
             <div>
-                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'story-update' object.id %}">Update</a>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'story-update' object.id %}">Edit</a>
                 <!-- Changed here -->
                 <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'story-delete' object.id %}">Delete</a>
                 <!-- Changed here -->
