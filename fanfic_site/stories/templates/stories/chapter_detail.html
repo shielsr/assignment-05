@@ -28,3 +28,22 @@
 </nav>
 
 {% endblock content %}
+
+
+{% block sidebar %}
+<div class="content-section">
+
+        <h2>Chapters</h2>
+        <ul>
+            {% for chapter in object.story.chapters.all %}
+            <li>
+                <a href="{% url 'chapter-detail' object.story.id chapter.number %}">
+                    Chapter {{ chapter.number }}: {{ chapter.title }}
+                </a>
+            </li>
+            {% empty %}
+            <li>No chapters yet.</li>
+            {% endfor %}
+        </ul>
+</div>
+{% endblock %}

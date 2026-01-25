@@ -3,14 +3,19 @@
 
 
 <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+  
     <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2" href="{% url 'user-stories' story.author.username %}">{{ object.author }}</a>
             <!--<small class="text-muted">{{ object.date_published|date:'dS, F, Y' }}</small>-->
         </div>
         <h2>{{ object.title }}</h2>
+        {% if object.cover_image %}
+        <p><img src="{{ object.cover_image.url }}" alt="{{ object.title }} cover" style="max-width:200px;">
+        </p>
+        {% endif %}
         {% if object.author == user %}
+
         <div class="alert alert-warning mt-4">
             <h4>Status: {{ object.get_status_display }}</h4>
             <form method="post" action="{% url 'story-toggle' object.pk %}">
@@ -22,22 +27,14 @@
                 {% endif %}
             </form>
         </div>
-        <div>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'story-update' object.id %}">Edit</a>
-            <!-- Changed here -->
-            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'story-delete' object.id %}">Delete</a>
-            <!-- Changed here -->
-        </div>
+
         {% endif %}
-        {% if object.cover_image %}
-        <p><img src="{{ object.cover_image.url }}" alt="{{ object.title }} cover" style="max-width:200px;">
-        </p>
-        {% endif %}
-        <p class="article-date-published">Date published: {{ object.date_published|date:'dS, F, Y' }}</p>
-        <p class="article-summary">Author: <a class="mr-2" href="{% url 'user-stories' story.author.username %}">
-                {{ object.author }}</a></p>
-        <p class="article-summary">Summary: {{ object.summary }}</p>
-        <p class="article-genre">Genre: {{ object.genre }}</p>
+
+
+
+
+
+
 
         <h2>Chapters</h2>
         <ul>
@@ -60,3 +57,29 @@
 
 
 {% endblock content %}
+
+
+{% block sidebar %}
+<div class="content-section">
+
+ <div><img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}"></div> 
+    <p class="article-summary">Author: <a class="mr-2" href="{% url 'user-stories' story.author.username %}">
+            {{ object.author }}</a></p>
+            <p class="article-date-published">Date published: {{ object.date_published|date:'dS, F, Y' }}</p>
+    
+    <p class="article-title">Title: {{ object.title }}</p>
+        <p class="article-summary">Summary: {{ object.summary }}</p>
+    <p class="article-genre">Genre: {{ object.genre }}</p>
+    {% if object.author == user %}
+    <div>
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'story-update' object.id %}">Edit story</a>
+        <!-- Changed here -->
+        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'story-delete' object.id %}">Delete story</a>
+        <!-- Changed here -->
+    </div>
+    {% endif %}
+
+
+
+</div>
+{% endblock %}

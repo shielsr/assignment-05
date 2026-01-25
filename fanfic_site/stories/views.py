@@ -78,11 +78,15 @@ class StoryCreateView(LoginRequiredMixin, CreateView):
 def TogglePublish(request, pk):
     story = get_object_or_404(Story, pk=pk, author=request.user)
 
+
     if story.status == 'draft':
         story.status = 'published'
-        story.date_published = timezone.now()
+        # Only set date_published if it was never published before
+        if not story.date_published or story.date_published == story._meta.get_field('date_published').default:
+            story.date_published = timezone.now()
     elif story.status == 'published':
         story.status = 'draft'
+
     # Optionally, leave hiatus stories unchanged
     story.save()
 

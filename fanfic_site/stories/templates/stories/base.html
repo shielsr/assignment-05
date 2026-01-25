@@ -69,7 +69,22 @@
         {% block content %}
         {% endblock %}
       </div>
-      
+
+      <div class="col-md-4">
+        {% block sidebar %}
+        <!-- Default sidebar content (optional) -->
+        <div class="content-section">
+          <h3>Latest Stories</h3>
+          <ul class="list-group list-group-flush">
+            {% for story in stories %}
+            <li class="list-group-item">{{ story.title }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endblock %}
+      </div>
+
+      <!--      
       <div class="col-md-4">
         <div class="content-section">
           <h3>Our Sidebar</h3>
@@ -81,7 +96,7 @@
             <li class="list-group-item list-group-item-light">etc</li>
           </ul>
         </div>
-      </div>
+      </div>-->
     </div>
   </main>
 

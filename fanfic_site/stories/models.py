@@ -58,3 +58,20 @@ class Chapter(models.Model):
         return f"{self.story.title} – Chapter {self.number}"
     
     
+class Message(models.Model):
+    sender = models.ForeignKey(
+        User, related_name='sent_messages', on_delete=models.CASCADE
+    )
+    recipient = models.ForeignKey(
+        User, related_name='received_messages', on_delete=models.CASCADE
+    )
+    subject = models.CharField(max_length=120)
+    body = models.TextField()
+    sent_at = models.DateTimeField(default=timezone.now)
+
+    is_read = models.BooleanField(default=False)
+    archived_by_sender = models.BooleanField(default=False)
+    archived_by_recipient = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.subject} ({self.sender} → {self.recipient})"
