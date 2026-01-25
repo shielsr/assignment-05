@@ -1,25 +1,34 @@
 {% extends "stories/base.html" %}
 {% block content %}
+<h1>Welcome, {{ user.username }}</h1>
+{% if request.user.is_staff %}
+<a class='btn btn-outline-info mb-4' href="{% url 'admin:index' %}">View admin dashboard</a>
+{% endif %}
+<p>Check out these recently published works of fan fiction.</p>
 {% for story in stories %}
 <!--    <h2>{{ story.title }}</h2>
     <p>By {{ story.author }} on {{ story.date_published|date:'dS, F, Y' }}</p>
     <p>{{ story.content }}</p>
 -->
 
-    <article class="media content-section">
-            <img class="rounded-circle article-img" src="{{ story.author.profile.image.url }}">
-            <div class="media-body">
-            <div class="article-metadata">
-                <a class="mr-2" href="{% url 'user-stories' story.author.username %}">{{ story.author }}</a>
-                <small class="text-muted">{{ story.date_posted|date:'dS, F, Y' }}</small>
-            </div>
-            <h2><a class="article-title" href="{% url 'story-detail' story.id %}">{{ story.title }}</a></h2>
-            <p class="article-content">{{ story.content }}</p>
-            </div>
-        </article>
 
-
+<article class="media content-section">
+<!--    <img class="rounded-circle article-img" src="{{ story.author.profile.image.url }}"> -->
+    <img class="mr-4" src="{{ story.cover_image.url }}" alt="{{ story.title }} cover" style="max-width:100px;">
         
+    <div class="media-body">
+
+        <h2><a class="article-title" href="{% url 'story-detail' story.id %}">{{ story.title }}</a></h2>
+                <div class="article-metadata">
+            Written by <a class="mr-2" href="{% url 'user-stories' story.author.username %}">{{ story.author }}</a>
+            <small class="text-muted">{{ story.date_published|date:'dS, F, Y' }}</small>
+        </div>
+        <p class="article-summary">Summary: {{ story.summary }}</p>
+    </div>
+</article>
+
+
+
 {% endfor %}
 
 {% if is_paginated %}
@@ -31,16 +40,16 @@
 
     {% for num in page_obj.paginator.page_range %}
     {% if page_obj.number == num %}
-        <a class='btn btn-info mb-4' href='?page={{ num }}'>{{ num }}</a>
-    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-        <a class='btn btn-outline-info mb-4' href='?page={{ num }}'>{{ num }}</a>
-    {% endif %}
-    {% endfor %}
+    <a class='btn btn-info mb-4' href='?page={{ num }}'>{{ num }}</a>
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <a class='btn btn-outline-info mb-4'
+        href='?page={{ num }}'>{{ num }}</a>
+        {% endif %}
+        {% endfor %}
 
-    {% if page_obj.has_next %}
-    <a class='btn btn-outline-info mb-4' href='?page={{ page_obj.next_page_number }}'>Next</a>
-    <a class='btn btn-outline-info mb-4' href='?page={{ page_obj.paginator.num_pages }}'>Last</a>
-    {% endif %}
+        {% if page_obj.has_next %}
+        <a class='btn btn-outline-info mb-4' href='?page={{ page_obj.next_page_number }}'>Next</a>
+        <a class='btn btn-outline-info mb-4' href='?page={{ page_obj.paginator.num_pages }}'>Last</a>
+        {% endif %}
 </div>
 {% endif %}
 

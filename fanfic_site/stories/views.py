@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
+from django.utils import timezone
 
 from .models import Story, Chapter
 from .forms import ChapterForm
@@ -24,6 +24,9 @@ class StoryListView(ListView):
     ordering = ['-date_published']
     paginate_by = 4
     
+    def get_queryset(self):
+        return Story.objects.filter(status='published').order_by('-date_published')
+    
 class UserStoryListView(ListView):
     model = Story
     template_name = 'stories/user_stories.html'
@@ -32,7 +35,13 @@ class UserStoryListView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return user.stories.order_by('-date_published')
+    
+        if self.request.user == user:
+            # Author sees everything
+            return user.stories.all().order_by('-date_published')
+        else:
+            # Others see only published stories
+            return user.stories.filter(status='published').order_by('-date_published')
 
 class StoryDetailView(DetailView):
     model = Story
@@ -58,15 +67,30 @@ class ChapterDetailView(DetailView):
 
 class StoryCreateView(LoginRequiredMixin, CreateView):
     model = Story
-    fields = ['title', 'genre', 'summary']   
+    fields = ['title', 'genre', 'summary', 'cover_image']   
     
     def form_valid(self, form):
         form.instance.author = self.request.user # Set the author on the form
+        form.instance.status = 'draft' 
         return super().form_valid(form) # Validate the form by running form_valid method from the parent class
+    
+@login_required
+def TogglePublish(request, pk):
+    story = get_object_or_404(Story, pk=pk, author=request.user)
+
+    if story.status == 'draft':
+        story.status = 'published'
+        story.date_published = timezone.now()
+    elif story.status == 'published':
+        story.status = 'draft'
+    # Optionally, leave hiatus stories unchanged
+    story.save()
+
+    return redirect('story-detail', pk=story.pk)
 
 class StoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Story
-    fields = ['title', 'genre', 'summary']
+    fields = ['title', 'genre', 'status', 'summary', 'cover_image']
 
     def form_valid(self, form):
         form.instance.author = self.request.user

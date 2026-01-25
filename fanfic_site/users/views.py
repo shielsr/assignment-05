@@ -15,9 +15,6 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
-@login_required
-def profile(request):
-    return render(request, 'users/profile.html')
 
 @login_required
 def profile(request):
@@ -35,9 +32,12 @@ def profile(request):
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
+    user_stories = request.user.stories.all().order_by('-date_published')
+
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form,
+        'stories': user_stories,
     }
 
     return render(request, 'users/profile.html', context)

@@ -8,6 +8,7 @@ from .views import (
     UserStoryListView,
     ChapterDetailView,
     AddChapter,
+    TogglePublish,
 )
 from . import views
 
@@ -21,5 +22,6 @@ urlpatterns = [
     path('about/',views.about, name='stories-about'),
     path("<int:pk>/", StoryDetailView.as_view(), name="story-detail"),
     path("<int:story_id>/chapters/<int:number>/", ChapterDetailView.as_view(), name="chapter-detail"),
-    path('<int:story_id>/add-chapter/', AddChapter, name='add-chapter')
+    path('<int:story_id>/add-chapter/', AddChapter, name='add-chapter'),
+    path('story/<int:pk>/toggle/', TogglePublish, name='story-toggle'),
 ]

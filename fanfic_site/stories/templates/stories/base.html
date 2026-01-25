@@ -41,7 +41,7 @@
             <a class="nav-item nav-link" href="{% url 'admin:index' %}">Admin Dashboard</a>
             {% endif %}
             <a class="nav-item nav-link" href="{% url 'story-create' %}">New story</a>
-            <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+            <a class="nav-item nav-link" href="{% url 'profile' %}">My account</a>
             <form action="{% url 'logout' %}" method="POST" class="form-inline">
               {% csrf_token %}
               <button type="submit" class="btn btn-link nav-item nav-link py-0">Logout</button>
@@ -69,6 +69,7 @@
         {% block content %}
         {% endblock %}
       </div>
+      
       <div class="col-md-4">
         <div class="content-section">
           <h3>Our Sidebar</h3>

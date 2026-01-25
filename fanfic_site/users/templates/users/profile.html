@@ -22,5 +22,24 @@
             <!-- Updated button to display Profile Info -->
         </div>
     </form>
+
+    <h3>Your Stories</h3>
+{% if stories %}
+    <ul class="list-group">
+        {% for story in stories %}
+            <li class="list-group-item">
+                <a href="{{ story.get_absolute_url }}">{{ story.title }}</a>
+                {% if story.cover_image %}
+                    <img src="{{ story.cover_image.url }}" alt="{{ story.title }} cover" style="height:50px; margin-left:10px;">
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You haven’t written any stories yet.</p>
+{% endif %}
+
 </div>
+
+
 {% endblock content %}
