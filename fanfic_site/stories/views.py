@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.utils import timezone
-
 from .models import Story, Chapter
 from .forms import ChapterForm
 from django.views.generic import (
@@ -13,7 +12,9 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+import json
 
 User = get_user_model()
 
@@ -64,6 +65,24 @@ class ChapterDetailView(DetailView):
             story_id=story_id,
             number=number
         )
+        
+class UpdateChapter(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Chapter
+    form_class = ChapterForm
+    template_name = 'stories/add_chapter.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['story'] = self.object.story
+        return context
+
+    def get_success_url(self):
+        return redirect('chapter-detail', story_id=self.object.story.id, number=self.object.number).url
+
+    def test_func(self):
+        chapter = self.get_object()
+        return self.request.user == chapter.story.author
+
 
 class StoryCreateView(LoginRequiredMixin, CreateView):
     model = Story
@@ -77,7 +96,6 @@ class StoryCreateView(LoginRequiredMixin, CreateView):
 @login_required
 def TogglePublish(request, pk):
     story = get_object_or_404(Story, pk=pk, author=request.user)
-
 
     if story.status == 'draft':
         story.status = 'published'
@@ -116,23 +134,61 @@ def about(request):
     return render(request, 'stories/about.html', {'title': 'About'})
 
 
-def AddChapter(request, story_id):
-    story = get_object_or_404(Story, id=story_id)
+class AddChapter(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    model = Chapter
+    form_class = ChapterForm
+    template_name = 'stories/add_chapter.html'
 
-    # Optional: check if current user is author
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['story'] = get_object_or_404(Story, id=self.kwargs['story_id'])
+        return context
+
+    def form_valid(self, form):
+        story = get_object_or_404(Story, id=self.kwargs['story_id'])
+        form.instance.story = story
+        return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        print("Form errors:", form.errors)  # Add this line
+        return super().form_invalid(form)
+
+    def get_initial(self):
+        story = get_object_or_404(Story, id=self.kwargs['story_id'])
+        return {'number': story.chapters.count() + 1}
+
+    def get_success_url(self):
+        return redirect('chapter-detail', story_id=self.object.story.id, number=self.object.number).url
+
+    def test_func(self):
+        story = get_object_or_404(Story, id=self.kwargs['story_id'])
+        return self.request.user == story.author
+    
+@login_required
+@require_POST
+def reorder_chapters(request, pk):
+    story = get_object_or_404(Story, pk=pk)
+    
+    # Check if user is the author
     if request.user != story.author:
-        return render(request, 'stories/forbidden.html', status=403)
-
-    if request.method == 'POST':
-        form = ChapterForm(request.POST)
-        if form.is_valid():
-            chapter = form.save(commit=False)
-            chapter.story = story
+        return JsonResponse({'success': False, 'error': 'Permission denied'}, status=403)
+    
+    try:
+        data = json.loads(request.body)
+        chapters = data.get('chapters', [])
+        
+        # First, set all chapters to high temporary numbers (1000+) to avoid conflicts
+        for i, chapter_data in enumerate(chapters):
+            chapter = Chapter.objects.get(id=chapter_data['id'], story=story)
+            chapter.number = 1000 + i
             chapter.save()
-            return redirect('chapter-detail', story_id=story.id, number=chapter.number)
-    else:
-        # Suggest the next chapter number automatically
-        next_number = story.chapters.count() + 1
-        form = ChapterForm(initial={'number': next_number})
-
-    return render(request, 'stories/add_chapter.html', {'form': form, 'story': story})
+        
+        # Then, update to the actual new numbers
+        for chapter_data in chapters:
+            chapter = Chapter.objects.get(id=chapter_data['id'], story=story)
+            chapter.number = chapter_data['number']
+            chapter.save()
+        
+        return JsonResponse({'success': True})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)}, status=400)

@@ -1,30 +1,54 @@
 {% extends "stories/base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
-{% block content %}
 
+{% block content %}
 
 <div class="content-section">
     <form method="POST">
 
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Add Chapter to "{{ story.title }}"</legend> <!-- Text Changed here -->
+            <legend class="border-bottom mb-4">
+                {% if form.instance.pk %}
+                Edit Chapter {{ form.instance.number }} in "{{ story.title }}"
+                {% else %}
+                Add Chapter {{ form.initial.number }} to "{{ story.title }}"
+                {% endif %}
+            </legend>
 
-            {{ form|crispy }}
+            {{ form.title|as_crispy_field }}
+            {{ form.content|as_crispy_field }}
+
+            <!-- Live Counter Display -->
+            <div id="chapter-counter" class="text-muted mb-3">
+                0 words • 0 characters
+            </div>
+
+<div style="display: none;">
+    {{ form.number|as_crispy_field }}
+</div>
+
+
         </fieldset>
+
         <div class="form-group">
             <button class="btn btn-outline-info" type="submit">
-              Add chapter
+                {% if form.instance.pk %}
+                Update chapter
+                {% else %}
+                Add chapter
+                {% endif %}
             </button>
         </div>
     </form>
 
     <a href="{% url 'story-detail' story.id %}">Back to Story</a>
 
+</div>
 
+<script src="{% static 'stories/js/counter.js' %}"></script>
 
+{% endblock content %}
 
-
-    {% endblock content %}
-
-    {% block sidebar %}{% endblock %}
+{% block sidebar %}{% endblock %}

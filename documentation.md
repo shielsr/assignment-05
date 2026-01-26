@@ -25,3 +25,5 @@ The following is a step-by-step account of how I did the project, which closely 
 - Set it up so that if a book was published once & then unpublished, the original publish date would persist
 - Created a new app called Mails to handle user-to-user messaging (as per the assignment requirements)
 - Continued updating the UI
+- Added a word count using javascript to the Add chapter section
+- On the story detail page, I used SortableJS to set up a drag-and-drop reordering of chapters

@@ -1,11 +1,19 @@
 {% extends "stories/base.html" %}
 {% block content %}
 
-<a href="{% url 'story-detail' object.story.id %}">
+<div class="content-section">
+<a class="btn btn-outline-secondary btn-sm mt-1 mb-1" href="{% url 'story-detail' object.story.id %}">
       ← Back to story
     </a>
+   
 <h1> <a class="article-title" href="{% url 'story-detail' object.story.id %}">{{ object.story.title }}</a></h1>
 <h2>Chapter {{ object.number }}: {{ object.title }}</h2>
+
+ <!-- Edit button - only show if user is the author -->
+<div>{% if object.story.author == user %}
+<a class="btn btn-secondary btn-sm" href="{% url 'chapter-update' object.story.id object.pk %}">Edit Chapter</a>
+{% endif %}
+</div>
 
 <div>
   {{ object.content|linebreaks }}
@@ -26,6 +34,8 @@
     </a>
   {% endif %}
 </nav>
+
+</div>
 
 {% endblock content %}
 

@@ -8,9 +8,12 @@ from .views import (
     UserStoryListView,
     ChapterDetailView,
     AddChapter,
+    UpdateChapter,
     TogglePublish,
+    reorder_chapters,
 )
 from . import views
+
 
 urlpatterns = [
     path('', StoryListView.as_view(), name='stories-home'),
@@ -22,6 +25,8 @@ urlpatterns = [
     path('about/',views.about, name='stories-about'),
     path("<int:pk>/", StoryDetailView.as_view(), name="story-detail"),
     path("<int:story_id>/chapters/<int:number>/", ChapterDetailView.as_view(), name="chapter-detail"),
-    path('<int:story_id>/add-chapter/', AddChapter, name='add-chapter'),
+    path('<int:story_id>/add-chapter/', AddChapter.as_view(), name='add-chapter'),
+    path('<int:story_id>/chapter/<int:pk>/update/', UpdateChapter.as_view(), name='chapter-update'),
+    path('story/<int:pk>/reorder-chapters/', reorder_chapters, name='reorder-chapters'),
     path('story/<int:pk>/toggle/', TogglePublish, name='story-toggle'),
 ]

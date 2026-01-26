@@ -44,6 +44,7 @@ DONE As an author, I want to edit my published stories, so I can correct typos.
 DONE As an author, I want to put my stories in cateogires, so readers can see what genre they are.
 DONE As an author, I want to receive messages from other users, so I can get feedback on my work.
 DONE As an author, I want to archive messages, so I can hide unfavourable feedback.
+DONE As an author, I want to be able to reorder my chapters, so I can change the order of chapters in my short story collections.
 
 DONE As a reader, I want to see a list of all stories from a user, so I can read all works from my favourite authors.
 As a reader, I want to search for stories by genre or fandom, so I can find stories I want to read.
