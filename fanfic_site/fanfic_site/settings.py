@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'stories.apps.StoriesConfig',
     'users.apps.UsersConfig',
+    'mails.apps.MailsConfig',
     "crispy_forms",
     "crispy_bootstrap5",
     'django.contrib.admin',

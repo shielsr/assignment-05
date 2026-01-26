@@ -23,3 +23,5 @@ The following is a step-by-step account of how I did the project, which closely 
 - Created a new form for adding chapters, and allowed authors to add chapters to their stories
 - Added publish/unpublish functionality
 - Set it up so that if a book was published once & then unpublished, the original publish date would persist
+- Created a new app called Mails to handle user-to-user messaging (as per the assignment requirements)
+- Continued updating the UI

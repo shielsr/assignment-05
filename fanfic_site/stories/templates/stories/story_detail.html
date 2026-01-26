@@ -5,11 +5,10 @@
 <article class="media content-section">
   
     <div class="media-body">
-        <div class="article-metadata">
-            <a class="mr-2" href="{% url 'user-stories' story.author.username %}">{{ object.author }}</a>
-            <!--<small class="text-muted">{{ object.date_published|date:'dS, F, Y' }}</small>-->
-        </div>
+        
         <h2>{{ object.title }}</h2>
+            <h5>A {{ object.genre }} story by <a class="mr-2" href="{% url 'user-stories' story.author.username %}">{{ object.author }}</a>
+        </h5>
         {% if object.cover_image %}
         <p><img src="{{ object.cover_image.url }}" alt="{{ object.title }} cover" style="max-width:200px;">
         </p>
@@ -79,7 +78,10 @@
     </div>
     {% endif %}
 
-
-
+{% if user.is_authenticated and user != object.author %}
+<a href="{% url 'mails:compose' %}?to={{ story.author.username }}&story={{ story.title }}" class="btn btn-primary">
+    Message the author
+</a>
+{% endif %}
 </div>
 {% endblock %}

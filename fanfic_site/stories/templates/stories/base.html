@@ -37,6 +37,7 @@
           <!-- Navbar Right Side -->
           <div class="navbar-nav">
             {% if user.is_authenticated %}
+            <a class="nav-link" href="{% url 'mails:mailbox' %}">Mailbox</a>
             {% if request.user.is_staff %}
             <a class="nav-item nav-link" href="{% url 'admin:index' %}">Admin Dashboard</a>
             {% endif %}
@@ -74,29 +75,22 @@
         {% block sidebar %}
         <!-- Default sidebar content (optional) -->
         <div class="content-section">
-          <h3>Latest Stories</h3>
+          <h4>Actions</h4>
           <ul class="list-group list-group-flush">
-            {% for story in stories %}
-            <li class="list-group-item">{{ story.title }}</li>
-            {% endfor %}
+            <li class="list-group-item"> <a class="nav-item nav-link" href="{% url 'story-create' %}">Write a new
+                story</a></li>
+            <li class="list-group-item"> <a class="nav-link" href="{% url 'mails:mailbox' %}">Go to my mailbox</a></li>
+
+{% if request.user.is_staff %}
+ <li class="list-group-item">            <a class="nav-item nav-link" href="{% url 'admin:index' %}">View admin dashboard</a>
+</li>
+{% endif %}
           </ul>
         </div>
         {% endblock %}
       </div>
 
-      <!--      
-      <div class="col-md-4">
-        <div class="content-section">
-          <h3>Our Sidebar</h3>
-          <p class="text-muted">Place any info we want in here</p>
-          <ul>
-            <li class="list-group-item list-group-item-light">Latest stories</li>
-            <li class="list-group-item list-group-item-light">Announcements</li>
-            <li class="list-group-item list-group-item-light">Calendars</li>
-            <li class="list-group-item list-group-item-light">etc</li>
-          </ul>
-        </div>
-      </div>-->
+   
     </div>
   </main>
 

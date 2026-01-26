@@ -1,0 +1,25 @@
+{% extends "stories/base.html" %}
+{% block content %}
+<h2>Archived Mails</h2>
+{% if mails %}
+<ul class="list-group">
+  {% for mail in mails %}
+    <li class="list-group-item">
+      <strong>{{ mail.sender.username }}</strong> &mdash; {{ mail.subject }} 
+      <small class="text-muted">{{ mail.timestamp|date:"SHORT_DATETIME_FORMAT" }}</small>
+      <a href="{% url 'mails:unarchive' mail.id %}" class="btn btn-sm btn-secondary float-right">Unarchive</a>
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No archived mails.</p>
+{% endif %}
+{% endblock %}
+
+
+{% block sidebar %}
+<div class="content-section">
+<h3>Actions:</h3>
+<a href="{% url 'mails:mailbox' %}" class="btn btn-secondary mb-3">Go to mailbox</a>
+</div>
+{% endblock %}
