@@ -13,6 +13,19 @@ h6 {
   color: #444444;
 }
 
+h1 {
+  font-size: 28px;
+  padding-bottom: 12px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h5 {
+  padding-bottom:8px;
+}
+
 ul {
   margin: 0;
 }
@@ -55,6 +68,7 @@ a.article-title:hover {
 }
 
 .article-img {
+  object-fit: cover;
   height: 65px;
   width: 65px;
   margin-right: 16px;
@@ -82,12 +96,15 @@ a.article-title:hover {
   width: 125px;
   margin-right: 20px;
   margin-bottom: 16px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .account-heading {
   font-size: 2.5rem;
 }
 
-
-
+.story-cover {
+  width:140px;
+  height: 210px;
+  object-fit: cover;
+}

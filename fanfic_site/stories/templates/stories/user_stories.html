@@ -11,10 +11,7 @@
         alt='User profile image'>
         <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2" href="{% url 'user-stories' story.author.username %}">
-            {{ story.author }}
-            </a>
-            <small class="text-muted">{{ story.date_posted|date:'F d, Y' }}</small>
+            <small class="text-muted">Published {{ story.date_published|date:'F d, Y' }}</small>
         </div>
         <h2>
             <a class="article-title" href="{% url 'story-detail' story.id %}">

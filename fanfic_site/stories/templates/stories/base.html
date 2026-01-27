@@ -15,9 +15,9 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" /> -->
   <link rel="stylesheet" type="text/css" href="{% static 'stories/main.css' %}">
   {% if title %}
-  <title>Fanfic Site - {{ title }}</title>
+  <title>Fanfictastic - {{ title }}</title>
   {% else %}
-  <title>Fanfic Site</title>
+  <title>Fanfictastic</title>
   {% endif %}
 </head>
 
@@ -25,7 +25,7 @@
   <header class="site-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
       <div class="container">
-        <a class="navbar-brand mr-4" href="{% url 'stories-home' %}">Fanfic Site</a>
+        <a class="navbar-brand mr-4" href="{% url 'stories-home' %}">Fanfictastic</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
           aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation"><span
             class="navbar-toggler-icon"></span></button>

@@ -7,7 +7,7 @@
 
     <div class="media-body">
 
-        <h2>{{ object.title }}</h2>
+        <h1>{{ object.title }}</h1>
         <h5>A {{ object.genre }} story by <a class="mr-2" href="{% url 'user-stories' story.author.username %}">{{ object.author }}</a>
         </h5>
         {% if object.cover_image %}
@@ -35,8 +35,6 @@
 
         {% if request.user == story.author and object.chapters.all %}
         <p class="text-muted small">Drag and drop to reorder chapters</p>
-                    
-            <button id="save-chapter-order" class="btn btn-primary btn-sm">Save new chapter order</button>
         {% endif %}
 
         <ul id="chapter-list" data-story-id="{{ object.id }}" style="list-style: none; padding: 0;">

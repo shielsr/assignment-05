@@ -50,6 +50,7 @@ class StoryDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['chapters'] = self.object.chapters.all()
+        context['title'] = self.object.title
         return context
 
 class ChapterDetailView(DetailView):
@@ -65,6 +66,11 @@ class ChapterDetailView(DetailView):
             story_id=story_id,
             number=number
         )
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f"{self.object.story.title} - Chapter {self.object.number}: {self.object.title}"
+        return context
         
 class UpdateChapter(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Chapter
