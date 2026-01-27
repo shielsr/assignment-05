@@ -1,2 +1,0 @@
-web: gunicorn fanfic_site.wsgi:application
-release: python manage.py migrate
