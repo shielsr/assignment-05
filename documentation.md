@@ -27,4 +27,4 @@ The following is a step-by-step account of how I did the project, which closely 
 - Continued updating the UI
 - Added a word count using javascript to the Add chapter section
 - On the story detail page, I used SortableJS to set up a drag-and-drop reordering of chapters
-- Deployed
+- Went through the process of deploying to Render.com
