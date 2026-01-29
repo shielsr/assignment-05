@@ -21,9 +21,9 @@
             <form method="post" action="{% url 'story-toggle' object.pk %}">
                 {% csrf_token %}
                 {% if object.status == 'draft' %}
-                <button class="btn btn-lg btn-success">🚀 Publish Story</button>
+                <button class="btn btn-lg btn-success">Publish Story</button>
                 {% elif object.status == 'published' %}
-                <button class="btn btn-lg btn-secondary">📥 Unpublish Story</button>
+                <button class="btn btn-lg btn-secondary">Unpublish Story</button>
                 {% endif %}
             </form>
         </div>
@@ -89,6 +89,7 @@
     <p class="article-title">Title: {{ object.title }}</p>
     <p class="article-summary">Summary: {{ object.summary }}</p>
     <p class="article-genre">Genre: {{ object.genre }}</p>
+    <p class="article-genre">Fandom: {{ object.fandom }}</p>
     {% if object.author == user %}
     <div>
         <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'story-update' object.id %}">Edit story</a>

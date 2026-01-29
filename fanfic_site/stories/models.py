@@ -22,7 +22,6 @@ class Story(models.Model):
     summary = models.TextField(max_length=500)
     fandom = models.CharField(max_length=100)
     genre = models.ForeignKey(Genre, on_delete=models.SET_NULL, null=True, related_name='stories')
-    rating = models.CharField(max_length=30)
 
     status = models.CharField(
         max_length=20,
@@ -31,7 +30,7 @@ class Story(models.Model):
     )
 
     date_published = models.DateTimeField(default=timezone.now)
-    cover_image = models.ImageField(upload_to='covers/', blank=True, null=True)
+    cover_image = models.ImageField(default='covers/default-cover.jpg', upload_to='covers/', blank=True, null=True)
 
     def __str__(self):
         return self.title

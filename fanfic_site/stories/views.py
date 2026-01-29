@@ -92,7 +92,7 @@ class UpdateChapter(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class StoryCreateView(LoginRequiredMixin, CreateView):
     model = Story
-    fields = ['title', 'genre', 'summary', 'cover_image']   
+    fields = ['title', 'genre', 'fandom', 'summary', 'cover_image']   
     
     def form_valid(self, form):
         form.instance.author = self.request.user # Set the author on the form
@@ -118,7 +118,7 @@ def TogglePublish(request, pk):
 
 class StoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Story
-    fields = ['title', 'genre', 'status', 'summary', 'cover_image']
+    fields = ['title', 'status', 'genre', 'fandom', 'summary', 'cover_image']
 
     def form_valid(self, form):
         form.instance.author = self.request.user

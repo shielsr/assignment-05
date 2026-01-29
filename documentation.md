@@ -28,3 +28,4 @@ The following is a step-by-step account of how I did the project, which closely 
 - Added a word count using javascript to the Add chapter section
 - On the story detail page, I used SortableJS to set up a drag-and-drop reordering of chapters
 - Went through the process of deploying to Render.com
+- Fixed bug where not uploading a cover image crashed everything

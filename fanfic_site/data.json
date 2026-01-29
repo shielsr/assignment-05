@@ -1,0 +1,1007 @@
+[
+{
+    "model": "stories.genre",
+    "pk": 1,
+    "fields": {
+        "name": "Sci-fi"
+    }
+},
+{
+    "model": "stories.genre",
+    "pk": 2,
+    "fields": {
+        "name": "Romance"
+    }
+},
+{
+    "model": "stories.genre",
+    "pk": 3,
+    "fields": {
+        "name": "Fantasy"
+    }
+},
+{
+    "model": "stories.genre",
+    "pk": 4,
+    "fields": {
+        "name": "Non-fiction"
+    }
+},
+{
+    "model": "stories.genre",
+    "pk": 5,
+    "fields": {
+        "name": "Mystery"
+    }
+},
+{
+    "model": "stories.genre",
+    "pk": 6,
+    "fields": {
+        "name": "Romantasy"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 3,
+    "fields": {
+        "story": 7,
+        "title": "At the beach",
+        "content": "Today I went to the beach",
+        "number": 4,
+        "date_published": "2026-01-24T15:08:23.262Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 4,
+    "fields": {
+        "story": 5,
+        "title": "In the beginning",
+        "content": "Was the word",
+        "number": 5,
+        "date_published": "2026-01-24T15:19:30.789Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 5,
+    "fields": {
+        "story": 8,
+        "title": "How it all began",
+        "content": "It was a dark and stormy night.",
+        "number": 1,
+        "date_published": "2026-01-24T15:28:15.402Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 6,
+    "fields": {
+        "story": 8,
+        "title": "My schooldays",
+        "content": "School was good.",
+        "number": 2,
+        "date_published": "2026-01-24T15:38:14.166Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 7,
+    "fields": {
+        "story": 8,
+        "title": "The College Years",
+        "content": "I had lots of fun.",
+        "number": 3,
+        "date_published": "2026-01-24T15:38:32.649Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 8,
+    "fields": {
+        "story": 5,
+        "title": "In the middle",
+        "content": "And so begins the middle part. It goes a little something like this.",
+        "number": 2,
+        "date_published": "2026-01-24T16:02:00.547Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 9,
+    "fields": {
+        "story": 5,
+        "title": "The end.",
+        "content": "Is this the end, or is it just the beginning?",
+        "number": 4,
+        "date_published": "2026-01-24T16:02:31.184Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 10,
+    "fields": {
+        "story": 7,
+        "title": "Leaving the beach",
+        "content": "An account of when I left the beach",
+        "number": 1,
+        "date_published": "2026-01-25T19:34:58.123Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 11,
+    "fields": {
+        "story": 7,
+        "title": "Going back to the beach the next day",
+        "content": "It was sunny so I went back.",
+        "number": 3,
+        "date_published": "2026-01-25T19:35:48.737Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 12,
+    "fields": {
+        "story": 7,
+        "title": "A different beach",
+        "content": "I went further up the coast to a different beach.",
+        "number": 2,
+        "date_published": "2026-01-25T19:36:17.498Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 13,
+    "fields": {
+        "story": 9,
+        "title": "X Factor",
+        "content": "Where it all begins....",
+        "number": 2,
+        "date_published": "2026-01-25T19:46:58.887Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 14,
+    "fields": {
+        "story": 9,
+        "title": "The early days",
+        "content": "The plot thickens...",
+        "number": 1,
+        "date_published": "2026-01-25T19:47:27.140Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 15,
+    "fields": {
+        "story": 5,
+        "title": "The mystery solved",
+        "content": "sdf asdf asdf asdf asdf fdasdf fdssdf asdf sadf  fdasdf fdsasd fdsaf asdfdsaf sdfasdfdfdfdasdf fsfsdsdf",
+        "number": 3,
+        "date_published": "2026-01-26T19:15:48.543Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 16,
+    "fields": {
+        "story": 5,
+        "title": "More mysteries, more problems",
+        "content": "Just when I thought I'd solved the big mystery, I generated several more.",
+        "number": 1,
+        "date_published": "2026-01-26T19:36:45.365Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 17,
+    "fields": {
+        "story": 10,
+        "title": "The Conundrum in Connemara",
+        "content": "My good friend Mr. Holmes is on holidays in Ireland. And when I say holidays, I mean he is solving mysteries there.",
+        "number": 2,
+        "date_published": "2026-01-26T20:33:49.046Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 18,
+    "fields": {
+        "story": 10,
+        "title": "The Case of the Missing Monarch",
+        "content": "Sherlock and I are en route to Belgium to meet the royal court, whose king recently disappeared.",
+        "number": 3,
+        "date_published": "2026-01-26T20:39:12.306Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 19,
+    "fields": {
+        "story": 10,
+        "title": "The End of Sherlock Holmes",
+        "content": "Here we go again! Sherlock and I are on holidays at the Reichenbach Falls. Let's hope Moriarty doesn't gate-crash the fun again!",
+        "number": 1,
+        "date_published": "2026-01-26T20:40:33.028Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 20,
+    "fields": {
+        "story": 9,
+        "title": "Will we last....?",
+        "content": "asdf asdf asdf\r\nkdjaifndaifenfenfewaf asdsfaw !!!",
+        "number": 3,
+        "date_published": "2026-01-26T21:09:31.678Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 21,
+    "fields": {
+        "story": 11,
+        "title": "When Brenda met Dylan",
+        "content": "sdafkldlkanaklnfal fjdf awiefjeasd aidfj as",
+        "number": 1,
+        "date_published": "2026-01-26T21:11:37.265Z"
+    }
+},
+{
+    "model": "stories.chapter",
+    "pk": 22,
+    "fields": {
+        "story": 11,
+        "title": "Brendan",
+        "content": "sanfdioa efwaifoiadaksnioa nwf",
+        "number": 2,
+        "date_published": "2026-01-26T21:11:59.628Z"
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$a9AA9RO0T457cX0RLSiOf2$3V0+KONXwFXx4czLiusXAuYhf9zGDkV+q7IMzuxGI8E=",
+        "last_login": "2026-01-26T21:28:08.376Z",
+        "is_superuser": true,
+        "username": "rob",
+        "first_name": "",
+        "last_name": "",
+        "email": "rob@robshiels.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-01-12T08:48:36.002Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$9yeTga3fgJG4tdbWZsstPh$K8zlEiOwDzNeQH2S7igJ0Y8NXrWvV2XTcIf6uyaDrE8=",
+        "last_login": "2026-01-16T19:46:58.705Z",
+        "is_superuser": false,
+        "username": "jim2000",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-13T22:53:43.791Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$r3AbGIWh8gm2VePWTNvdcV$YhbG5DiL9HkBaN0FGpTrUnCImIu5VCWyleAu5men4eM=",
+        "last_login": "2026-01-26T00:14:18.536Z",
+        "is_superuser": false,
+        "username": "paul",
+        "first_name": "",
+        "last_name": "",
+        "email": "shielsr@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-13T23:22:12Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$5qsR8ZmrahEJTV30nJho4X$VPhd7S1vBQr7My/+xXhZLCWk+m9GvWhDrG9D00oDzu0=",
+        "last_login": "2026-01-16T20:10:56.296Z",
+        "is_superuser": false,
+        "username": "billpreston",
+        "first_name": "",
+        "last_name": "",
+        "email": "bill@preston.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-16T19:51:10.467Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$ODCLJDBm5qOyqhMPVQH000$nr5bxcp6GPSYyE356HV7xzvWgyY80PU0y6skW6RRVsk=",
+        "last_login": "2026-01-16T23:15:54.264Z",
+        "is_superuser": false,
+        "username": "ringo",
+        "first_name": "",
+        "last_name": "",
+        "email": "ringo@starr.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-16T23:15:41.851Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$NMyddBeuBO682puTyLsuB9$NCxmAaJ4ZucPVIZ0X3SwRn/pI0hktdalWv8wNUJ228A=",
+        "last_login": "2026-01-26T21:08:26.746Z",
+        "is_superuser": false,
+        "username": "michasia",
+        "first_name": "",
+        "last_name": "",
+        "email": "michalinamaruszewska@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-25T19:44:16.874Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$3UjU90SU3oqhpLeQsv72M6$TSmG0rqxbiBa6jam4WyZ8tzwyoPMCQ0kIJmB0o7Yecs=",
+        "last_login": "2026-01-26T21:14:57.164Z",
+        "is_superuser": false,
+        "username": "jim",
+        "first_name": "",
+        "last_name": "",
+        "email": "shielsr@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-26T20:17:34.633Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "6sufi63d80uihxb5s1s7yxjkyo8b631f",
+    "fields": {
+        "session_data": ".eJxVjDsOwyAQRO9CHSE-CzYp0_sMCNglOIlAMnYV5e6xJRdJOfPezJv5sK3Fb50WPyO7Mskuv10M6Un1APgI9d54anVd5sgPhZ-086khvW6n-3dQQi_7GqxMxlEQQMaCVNpCGlXEbIeYzThQlKSzETmiAIcOURlrwcCek06Sfb7YODfS:1vkU80:rnVECFP9EW1Ao5vy6xqO3776o-B4vQ0AZ-sJ29SWyww",
+        "expire_date": "2026-02-09T21:28:08.392Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "flppa6xx6hot4fsweucfhlchlul4g8df",
+    "fields": {
+        "session_data": "eyJfcGFzc3dvcmRfcmVzZXRfdG9rZW4iOiJkMnE0c3UtZWRmYzJjNzkyMDNiODQyMGZmNzdhMmJhY2Q2Y2MyNDgifQ:1viJlB:PqtUjTp6hmgqx92TGmQxETW-8BXBtRudZ2OxrOaT_sI",
+        "expire_date": "2026-02-03T21:59:37.432Z"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2026-01-16T22:15:31.808Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "users",
+            "profile"
+        ],
+        "object_id": "1",
+        "object_repr": "rob Profile",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2026-01-16T22:15:48.964Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "users",
+            "profile"
+        ],
+        "object_id": "2",
+        "object_repr": "paul Profile",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2026-01-16T22:48:04.870Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "users",
+            "profile"
+        ],
+        "object_id": "2",
+        "object_repr": "paul Profile",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2026-01-16T22:48:04.899Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "users",
+            "profile"
+        ],
+        "object_id": "1",
+        "object_repr": "rob Profile",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2026-01-16T22:48:36.884Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "users",
+            "profile"
+        ],
+        "object_id": "3",
+        "object_repr": "rob Profile",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2026-01-16T22:48:43.376Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "users",
+            "profile"
+        ],
+        "object_id": "4",
+        "object_repr": "paul Profile",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2026-01-20T21:21:36.577Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "3",
+        "object_repr": "paul",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Email address\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2026-01-20T21:21:57.765Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "6",
+        "object_repr": "me",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2026-01-20T21:21:57.783Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "7",
+        "object_repr": "meagain",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2026-01-24T15:07:21.756Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "stories",
+            "genre"
+        ],
+        "object_id": "1",
+        "object_repr": "Sci-fi",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2026-01-24T15:07:25.882Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "stories",
+            "genre"
+        ],
+        "object_id": "2",
+        "object_repr": "Romance",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2026-01-24T15:07:29.828Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "stories",
+            "genre"
+        ],
+        "object_id": "3",
+        "object_repr": "Fantasy",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2026-01-24T15:07:33.917Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "stories",
+            "genre"
+        ],
+        "object_id": "4",
+        "object_repr": "Non-fiction",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2026-01-24T15:07:46.960Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "stories",
+            "genre"
+        ],
+        "object_id": "5",
+        "object_repr": "Mystery",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2026-01-25T17:16:00.289Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "stories",
+            "story"
+        ],
+        "object_id": "8",
+        "object_repr": "Paul: The Early Years",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Fandom\", \"Rating\", \"Status\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2026-01-25T18:02:19.183Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "stories",
+            "story"
+        ],
+        "object_id": "3",
+        "object_repr": "Story three",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2026-01-25T18:02:19.194Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "stories",
+            "story"
+        ],
+        "object_id": "2",
+        "object_repr": "Second fanfic story",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2026-01-25T18:02:19.200Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "stories",
+            "story"
+        ],
+        "object_id": "1",
+        "object_repr": "First story",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2026-01-25T19:48:58.880Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "stories",
+            "genre"
+        ],
+        "object_id": "6",
+        "object_repr": "Romantasy",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2026-01-25T23:52:17.790Z",
+        "user": [
+            "rob"
+        ],
+        "content_type": [
+            "stories",
+            "story"
+        ],
+        "object_id": "9",
+        "object_repr": "Harry and Louis love story",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Title\", \"Fandom\", \"Rating\"]}}]"
+    }
+},
+{
+    "model": "mails.mail",
+    "pk": 1,
+    "fields": {
+        "sender": [
+            "michasia"
+        ],
+        "recipient": [
+            "rob"
+        ],
+        "subject": "asdf",
+        "body": "asdfasdf",
+        "timestamp": "2026-01-25T22:58:07.748Z",
+        "is_archived": true
+    }
+},
+{
+    "model": "mails.mail",
+    "pk": 2,
+    "fields": {
+        "sender": [
+            "michasia"
+        ],
+        "recipient": [
+            "rob"
+        ],
+        "subject": "asdf",
+        "body": "asdfasdf",
+        "timestamp": "2026-01-25T22:59:42.261Z",
+        "is_archived": false
+    }
+},
+{
+    "model": "mails.mail",
+    "pk": 3,
+    "fields": {
+        "sender": [
+            "rob"
+        ],
+        "recipient": [
+            "paul"
+        ],
+        "subject": "Hello",
+        "body": "World",
+        "timestamp": "2026-01-25T23:24:23.781Z",
+        "is_archived": false
+    }
+},
+{
+    "model": "mails.mail",
+    "pk": 4,
+    "fields": {
+        "sender": [
+            "paul"
+        ],
+        "recipient": [
+            "michasia"
+        ],
+        "subject": "Great story",
+        "body": "Really enjoyed it!",
+        "timestamp": "2026-01-25T23:28:25.962Z",
+        "is_archived": false
+    }
+},
+{
+    "model": "mails.mail",
+    "pk": 5,
+    "fields": {
+        "sender": [
+            "rob"
+        ],
+        "recipient": [
+            "paul"
+        ],
+        "subject": "The Paul Mystery",
+        "body": "Congrats on the great book",
+        "timestamp": "2026-01-25T23:40:09.155Z",
+        "is_archived": false
+    }
+},
+{
+    "model": "mails.mail",
+    "pk": 6,
+    "fields": {
+        "sender": [
+            "michasia"
+        ],
+        "recipient": [
+            "jim"
+        ],
+        "subject": "New Sherlock Holmes Stories",
+        "body": "could use some improvement",
+        "timestamp": "2026-01-26T21:14:39.817Z",
+        "is_archived": false
+    }
+},
+{
+    "model": "users.profile",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "rob"
+        ],
+        "image": "profile_pics/robert-shiels-photo_hNyXaJd.jpg"
+    }
+},
+{
+    "model": "users.profile",
+    "pk": 4,
+    "fields": {
+        "user": [
+            "paul"
+        ],
+        "image": "profile_pics/5b7df60f-701d-4444-abfb-80771ff7af59.webp"
+    }
+},
+{
+    "model": "users.profile",
+    "pk": 5,
+    "fields": {
+        "user": [
+            "ringo"
+        ],
+        "image": "profile_pics/WIN_20200424_14_22_51_Pro.jpg"
+    }
+},
+{
+    "model": "users.profile",
+    "pk": 8,
+    "fields": {
+        "user": [
+            "michasia"
+        ],
+        "image": "default.png"
+    }
+},
+{
+    "model": "users.profile",
+    "pk": 9,
+    "fields": {
+        "user": [
+            "jim"
+        ],
+        "image": "profile_pics/typewriter.avif"
+    }
+},
+{
+    "model": "stories.story",
+    "pk": 5,
+    "fields": {
+        "title": "The Paul Mystery",
+        "author": [
+            "paul"
+        ],
+        "summary": "Unravel the mystery of Paul.",
+        "fandom": "",
+        "genre": 5,
+        "rating": "",
+        "status": "published",
+        "date_published": "2026-01-25T18:13:29.776Z",
+        "cover_image": "covers/detective.avif"
+    }
+},
+{
+    "model": "stories.story",
+    "pk": 7,
+    "fields": {
+        "title": "My Summer Holiday",
+        "author": [
+            "rob"
+        ],
+        "summary": "An account of my holiday",
+        "fandom": "",
+        "genre": 3,
+        "rating": "",
+        "status": "published",
+        "date_published": "2026-01-25T18:01:38.903Z",
+        "cover_image": "covers/sea-rocks.avif"
+    }
+},
+{
+    "model": "stories.story",
+    "pk": 8,
+    "fields": {
+        "title": "Paul: The Early Years",
+        "author": [
+            "paul"
+        ],
+        "summary": "My life and times written out with words.",
+        "fandom": "Paul",
+        "genre": 3,
+        "rating": "18+",
+        "status": "published",
+        "date_published": "2026-01-24T15:25:34Z",
+        "cover_image": "covers/school-bus.avif"
+    }
+},
+{
+    "model": "stories.story",
+    "pk": 9,
+    "fields": {
+        "title": "Harry and Louis love story",
+        "author": [
+            "michasia"
+        ],
+        "summary": "OD's best kept secret.",
+        "fandom": "One Direction",
+        "genre": 6,
+        "rating": "PG",
+        "status": "published",
+        "date_published": "2026-01-25T19:46:18Z",
+        "cover_image": "covers/download.jpg"
+    }
+},
+{
+    "model": "stories.story",
+    "pk": 10,
+    "fields": {
+        "title": "New Sherlock Holmes Stories",
+        "author": [
+            "jim"
+        ],
+        "summary": "A new collection of short stories written by me about the world's greatest detective.",
+        "fandom": "",
+        "genre": 5,
+        "rating": "",
+        "status": "published",
+        "date_published": "2026-01-26T20:19:20.027Z",
+        "cover_image": "covers/sherlock.avif"
+    }
+},
+{
+    "model": "stories.story",
+    "pk": 11,
+    "fields": {
+        "title": "BH 90210",
+        "author": [
+            "michasia"
+        ],
+        "summary": "Back to the classics - retelling of legendary BH 90210",
+        "fandom": "",
+        "genre": 2,
+        "rating": "",
+        "status": "published",
+        "date_published": "2026-01-26T21:11:18.238Z",
+        "cover_image": "covers/download_1.jpg"
+    }
+}
+]
