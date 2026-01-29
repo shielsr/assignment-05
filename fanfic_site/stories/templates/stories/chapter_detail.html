@@ -44,10 +44,10 @@
 <div class="content-section">
 
         <h2>Chapters</h2>
-        <ul>
+        <ul class="list-group list-group-flush">
             {% for chapter in object.story.chapters.all %}
-            <li>
-                <a href="{% url 'chapter-detail' object.story.id chapter.number %}">
+            <li class="list-group-item">
+                <a class="nav-item nav-link" href="{% url 'chapter-detail' object.story.id chapter.number %}">
                     Chapter {{ chapter.number }}: {{ chapter.title }}
                 </a>
             </li>
