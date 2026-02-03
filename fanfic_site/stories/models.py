@@ -3,6 +3,10 @@ from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 
+from cloudinary_storage.storage import MediaCloudinaryStorage
+from cloudinary.utils import cloudinary_url
+from django.templatetags.static import static
+
 User = get_user_model()
 
 class Genre(models.Model):
@@ -30,13 +34,27 @@ class Story(models.Model):
     )
 
     date_published = models.DateTimeField(default=timezone.now)
-    cover_image = models.ImageField(default='covers/default-cover.jpg', upload_to='covers/', blank=True, null=True)
+    # cover_image = models.ImageField(default='covers/default-cover.jpg', upload_to='covers/', blank=True, null=True)
+    cover_image = models.ImageField(
+        upload_to='covers/',
+        storage=MediaCloudinaryStorage(),
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('story-detail', kwargs={'pk': self.pk})
+    
+    def get_cover_image_url(self):
+        if self.cover_image:
+            return cloudinary_url(
+                self.cover_image.name, width=140, height=210, crop="fill"
+            )[0]
+        else:
+            return static('default-cover.jpg')
     
 class Chapter(models.Model):
     story = models.ForeignKey(

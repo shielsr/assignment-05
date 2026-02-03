@@ -29,4 +29,5 @@ The following is a step-by-step account of how I did the project, which closely 
 - On the story detail page, I used SortableJS to set up a drag-and-drop reordering of chapters
 - Went through the process of deploying to Render.com
 - Fixed bug where not uploading a cover image crashed everything
-= Set up Cloudinary and updated the Profile model, removing references to Pillow
+- Set up Cloudinary and updated the Profile model, removing references to Pillow
+- Changed Story model to work with Cloudinary and updated templates
