@@ -81,7 +81,7 @@
 {% block sidebar %}
 <div class="content-section">
 
-    <div><img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}"></div>
+    <div><img class="rounded-circle article-img" src="{{ object.author.profile.get_image_url }}"></div>
     <p class="article-summary">Author: <a class="mr-2" href="{% url 'user-stories' story.author.username %}">
             {{ object.author }}</a></p>
     <p class="article-date-published">Date published: {{ object.date_published|date:'dS, F, Y' }}</p>

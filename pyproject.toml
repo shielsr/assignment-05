@@ -3,9 +3,11 @@ name = "fanfic_site"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
+    "cloudinary==1.42.1",
     "crispy-bootstrap5>=2025.6",
     "dj-database-url>=3.1.0",
     "django==4.2.26",
+    "django-cloudinary-storage==0.3.0",
     "django-crispy-forms>=2.5",
     "gunicorn>=24.1.1",
     "pillow>=12.1.0",
