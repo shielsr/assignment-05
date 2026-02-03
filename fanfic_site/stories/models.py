@@ -54,7 +54,7 @@ class Story(models.Model):
                 self.cover_image.name, width=140, height=210, crop="fill"
             )[0]
         else:
-            return static('default-cover.jpg')
+            return static('stories/default-cover.jpg')
     
 class Chapter(models.Model):
     story = models.ForeignKey(

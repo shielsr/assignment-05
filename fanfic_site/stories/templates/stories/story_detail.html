@@ -10,7 +10,7 @@
         <h1>{{ object.title }}</h1>
         <h5>A {{ object.genre }} story by <a class="mr-2" href="{% url 'user-stories' story.author.username %}">{{ object.author }}</a>
         </h5>
-        {% if object.cover_image %}
+        {% if object.get_cover_image_url %}
         <p><img src="{{ object.get_cover_image_url }}" alt="{{ object.title }} cover" style="max-width:200px;">
         </p>
         {% endif %}
