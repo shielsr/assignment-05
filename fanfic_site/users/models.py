@@ -15,7 +15,7 @@ class Profile(models.Model):
         null=True, # a missing profile image is handled by get_image_url
     )
 
-     def get_image_url(self):
+    def get_image_url(self):
         if self.image: # Generate a Cloudinary thumbnail URL
             return cloudinary_url(
                 self.image.name, width=300, height=300, crop="lfill"
