@@ -39,4 +39,11 @@ Future tests:
 With more time, I would write tests for all model classes.
 
 test_stories_list_view(self):
-This didn't work. Then I realised that stories are created as draft by default, so wouldn't appear on the page. So, I added a line to publish them.
+This didn't work. Then I realised that stories are created as draft by default, so wouldn't appear on the page. So, I researched and add an if statement to settings.py
+
+test_create_post_view(self):
+The genres field is a messy one. I had to figure out how to do dummy data here.
+Used print(response.context['form'].errors)  to see what error messages the page was throwing.
+
+test_update_story_view(self)
+Again I had to add all required fields here.  The status was the new required field. I had to factor that into this test.

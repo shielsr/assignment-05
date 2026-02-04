@@ -73,29 +73,53 @@ class StoryViewsTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.story.title)
         
-        def test_create_post_view(self):
+    def test_create_story_view(self):
         self.client.login(username='testuser', password='12345')
-        response = self.client.get(reverse('post-create'))
+        response = self.client.get(reverse('story-create'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'blog/post_form.html')
-
-        response = self.client.post(reverse('post-create'), {
+        self.assertTemplateUsed(response, 'stories/story_form.html')
+        self.genre = Genre.objects.create(name='Sci-fi')
+        
+        response = self.client.post(reverse('story-create'), {
             'title': 'New title',
-            'content': 'New text',
-        })
+            'summary': 'New text',
+            'fandom': 'Star Trek',
+            'genre': self.genre.id,
+            })
+
         self.assertEqual(response.status_code, 302)  # Redirect after POST
-        self.assertTrue(Post.objects.filter(title='New title').exists())
+        self.assertTrue(Story.objects.filter(title='New title').exists())
+
+
+    def test_update_story_view(self):
+        self.client.login(username='testuser', password='12345')
+        url = reverse('story-update', kwargs={'pk': self.story.pk})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'stories/story_form.html')
+
+        self.genre = Genre.objects.create(name='Sci-fi')
+        self.assertEqual(self.story.title, 'Test Story')  # Check the original
+
+        response = self.client.post(url, {
+            'title': 'Updated title',
+            'summary': 'New text',
+            'fandom': 'Star Trek',
+            'genre': self.genre.id,
+            'status': 'published'
+        })
+        self.story.refresh_from_db()
+        self.assertEqual(response.status_code, 302)  # Redirect after POST
+        self.assertEqual(self.story.title, 'Updated title')
         
         
-     def test_create_post_view(self):
+    def test_delete_story_view(self):
         self.client.login(username='testuser', password='12345')
-        response = self.client.get(reverse('post-create'))
+        url = reverse('story-delete', kwargs={'pk': self.story.pk})
+        response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'blog/post_form.html')
+        self.assertTemplateUsed(response, 'stories/story_confirm_delete.html')
 
-        response = self.client.post(reverse('post-create'), {
-            'title': 'New title',
-            'content': 'New text',
-        })
+        response = self.client.post(url)
         self.assertEqual(response.status_code, 302)  # Redirect after POST
-        self.assertTrue(Post.objects.filter(title='New title').exists())
+        self.assertFalse(Story.objects.filter(pk=self.story.pk).exists())
