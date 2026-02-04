@@ -1,6 +1,6 @@
 {% extends "stories/base.html" %}
 {% block content %}
-<h1>Welcome, {{ user.username }}</h1>
+<h1>Welcome {{ user.username }}</h1>
 {% if request.user.is_staff %}
 <a class='btn btn-outline-info mb-4' href="{% url 'admin:index' %}">View admin dashboard</a>
 {% endif %}
