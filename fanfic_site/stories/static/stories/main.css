@@ -112,3 +112,24 @@ a.article-title:hover {
 #div_id_cover_image span .form-check {
   display:none;
 }
+
+.story-detail-cover-image {
+  max-width:200px;
+}
+
+#chapter-list {
+  list-style: none; 
+  padding: 0;
+}
+
+.chapter-item {
+  padding: 10px;
+  margin: 5px 0;
+  background: #f8f9fa;
+  border-radius: 5px;
+}
+
+.drag-handle {
+  cursor: move; 
+  margin-right: 10px;
+}

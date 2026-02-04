@@ -36,7 +36,7 @@ The following is a step-by-step account of how I did the project, which closely 
 
 
 Future tests:
-With more time, I would write tests for all model classes.
+With more time, I wanted to write tests for all models across all 3 apps (stories, user and mails). But, given that I was running out of time, I focused on the models for just the stories app. I also installed Coverage. With more time, I would ensure testing was set up for all apps, models, etc.
 
 test_stories_list_view(self):
 This didn't work. Then I realised that stories are created as draft by default, so wouldn't appear on the page. So, I researched and add an if statement to settings.py

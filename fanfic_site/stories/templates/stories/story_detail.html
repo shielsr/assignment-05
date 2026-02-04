@@ -11,7 +11,7 @@
         <h5>A {{ object.genre }} story by <a class="mr-2" href="{% url 'user-stories' story.author.username %}">{{ object.author }}</a>
         </h5>
         {% if object.get_cover_image_url %}
-        <p><img src="{{ object.get_cover_image_url }}" alt="{{ object.title }} cover" style="max-width:200px;">
+        <p><img src="{{ object.get_cover_image_url }}" alt="{{ object.title }} cover" class="story-detail-cover-image">
         </p>
         {% endif %}
         {% if object.author == user %}
@@ -37,12 +37,11 @@
         <p class="text-muted small">Drag and drop to reorder chapters</p>
         {% endif %}
 
-        <ul id="chapter-list" data-story-id="{{ object.id }}" style="list-style: none; padding: 0;">
+        <ul id="chapter-list" data-story-id="{{ object.id }}">
             {% for chapter in object.chapters.all %}
-            <li class="chapter-item" data-chapter-id="{{ chapter.id }}"
-                style="padding: 10px; margin: 5px 0; background: #f8f9fa; border-radius: 5px;">
+            <li class="chapter-item" data-chapter-id="{{ chapter.id }}">
                 {% if request.user == story.author %}
-                <span class="drag-handle" style="cursor: move; margin-right: 10px;">⋮⋮</span>
+                <span class="drag-handle">⋮⋮</span>
                 {% endif %}
                 <a href="{% url 'chapter-detail' object.id chapter.number %}">
                     Chapter {{ chapter.number }}: {{ chapter.title }}
@@ -81,7 +80,7 @@
 {% block sidebar %}
 <div class="content-section">
 
-    <div><img class="rounded-circle article-img" src="{{ object.author.profile.get_image_url }}"></div>
+    <div><img class="rounded-circle article-img" alt="Author profile image" src="{{ object.author.profile.get_image_url }}"></div>
     <p class="article-summary">Author: <a class="mr-2" href="{% url 'user-stories' story.author.username %}">
             {{ object.author }}</a></p>
     <p class="article-date-published">Date published: {{ object.date_published|date:'dS, F, Y' }}</p>
