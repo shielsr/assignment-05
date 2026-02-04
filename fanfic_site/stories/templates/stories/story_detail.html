@@ -21,9 +21,9 @@
             <form method="post" action="{% url 'story-toggle' object.pk %}">
                 {% csrf_token %}
                 {% if object.status == 'draft' %}
-                <button class="btn btn-lg btn-success">Publish Story</button>
+                <button class="btn btn-lg btn-success" type="submit">Publish Story</button>
                 {% elif object.status == 'published' %}
-                <button class="btn btn-lg btn-secondary">Unpublish Story</button>
+                <button class="btn btn-lg btn-secondary" type="submit">Unpublish Story</button>
                 {% endif %}
             </form>
         </div>

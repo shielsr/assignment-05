@@ -11,8 +11,7 @@
         <fieldset class="form-group">
 
             <div class="media">
-                <img class="rounded-circle account-img" src="{{ user.profile.get_image_url }}">
-                
+                <img class="rounded-circle account-img" alt="Author profile image" src="{{ user.profile.get_image_url }}">
             </div>
             {{ u_form|crispy }} <!-- Updated to load the user form and let crispy take care of the formating -->
             {{ p_form|crispy }} <!-- Updated to load the profile form and let crispy take care of the formating -->
@@ -38,9 +37,9 @@
         <tbody>
             {% for story in stories %}
             <tr>
-                <td style="width: 80px;">
+                <td class="profile-story-cover-image">
                     {% if story.cover_image %}
-                    <img src="{{ story.cover_image.url }}" alt="{{ story.title }} cover" style="height:50px;">
+                    <img src="{{ story.cover_image.url }}" alt="{{ story.title }} cover">
                     {% else %}
                     <span class="text-muted">—</span>
                     {% endif %}

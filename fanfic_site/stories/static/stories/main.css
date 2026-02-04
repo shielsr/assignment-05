@@ -133,3 +133,14 @@ a.article-title:hover {
   cursor: move; 
   margin-right: 10px;
 }
+
+.profile-story-cover-image {
+  width: 80px;
+}
+
+.profile-story-cover-image img {
+  height: 80px;
+}
+
+
+ 
