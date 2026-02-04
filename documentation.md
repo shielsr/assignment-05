@@ -31,3 +31,12 @@ The following is a step-by-step account of how I did the project, which closely 
 - Fixed bug where not uploading a cover image crashed everything
 - Set up Cloudinary and updated the Profile model, removing references to Pillow
 - Changed Story model to work with Cloudinary and updated templates
+- Wrote unit tests for the Story app
+
+
+
+Future tests:
+With more time, I would write tests for all model classes.
+
+test_stories_list_view(self):
+This didn't work. Then I realised that stories are created as draft by default, so wouldn't appear on the page. So, I added a line to publish them.
