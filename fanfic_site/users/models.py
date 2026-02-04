@@ -8,6 +8,7 @@ from django.templatetags.static import static
 User = get_user_model()
 
 class Profile(models.Model):
+    """The standard Profile model, allowing users to add a profile image etc."""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(
         upload_to='profile_pics',

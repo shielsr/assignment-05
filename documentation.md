@@ -32,6 +32,8 @@ The following is a step-by-step account of how I did the project, which closely 
 - Set up Cloudinary and updated the Profile model, removing references to Pillow
 - Changed Story model to work with Cloudinary and updated templates
 - Wrote unit tests for the Story app
+- Tidied up formatting, CSS etc, and cleared up the majority of 'Problems' from the Terminal
+- Wrote docstrings for all model classes
 
 
 

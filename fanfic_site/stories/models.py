@@ -10,12 +10,14 @@ from django.templatetags.static import static
 User = get_user_model()
 
 class Genre(models.Model):
+    """Creates a table to house a set list of genres. Genres must be added by the admin, rather than the user."""
     name = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return self.name
     
 class Story(models.Model):
+    """The main model for creating stories."""
     STATUS_CHOICES = [
         ('draft', 'Draft (private)'),
         ('published', 'Published'),
@@ -34,7 +36,6 @@ class Story(models.Model):
     )
 
     date_published = models.DateTimeField(default=timezone.now)
-    # cover_image = models.ImageField(default='covers/default-cover.jpg', upload_to='covers/', blank=True, null=True)
     cover_image = models.ImageField(
         upload_to='covers/',
         storage=MediaCloudinaryStorage(),
@@ -57,6 +58,8 @@ class Story(models.Model):
             return static('stories/default-cover.jpg')
     
 class Chapter(models.Model):
+    """Every story can have one or more chapters. This model creates the chapters and assigns them to a story.
+    The 'number' refers to the chapter number. This can be changed by the user on the story_detail page"""
     story = models.ForeignKey(
         Story,
         related_name='chapters',

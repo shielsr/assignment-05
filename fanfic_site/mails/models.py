@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 class Mail(models.Model):
+    """A model for creating user-to-user messages."""
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_mails')
     recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_mails')
     subject = models.CharField(max_length=255)
