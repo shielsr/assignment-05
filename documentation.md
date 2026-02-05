@@ -145,7 +145,23 @@ The following is a step-by-step account of how I did the project, which closely 
 I followed Yoni's lessons to set up the Django framework.
 
 ### Database
-I initially worked locally with SQLite, and when deploying I changed the database to Postgres.
+I initially worked locally with SQLite, and when deploying I changed the database to Postgres. I broken down what table and relationships I would neeed.
+
+Tables:
+* User
+* Profile
+* Story
+* Chapter
+* Genre
+* Mail
+
+1. User → Profile (One-to-one)
+2. User → Story (One-to-Many)
+3. Genre → Story (One-to-Many)
+4. Story → Chapter (One-to-Many)
+5. User → Mail (One-to-Many) - as SENDER
+6. User → Mail (One-to-Many) - as RECIPIENT
+
 
 #### ERD
 
