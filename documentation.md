@@ -1,7 +1,6 @@
 # My design decisions
-## User stories
 
-# Personas
+## Personas
 * Authors
 * Readers
 
@@ -88,12 +87,6 @@ For readers:
 <br>
 <br>
 
-## Prioritised tasks:
-
-?????????
-
-<br>
-<br>
 
 ## Wireframes
 
@@ -146,35 +139,35 @@ The following is a step-by-step account of how I did the project, which closely 
 
 # Project Details
 
-## Application structure
+## 1. Application structure
 ### Backend Framework
 I followed Yoni's lessons to set up the Django framework.
 
 ### Database
-I initially worked locally with SQLite, and when deploying I changed the database to PostgreS.
+I initially worked locally with SQLite, and when deploying I changed the database to Postgres.
 
 #### ERD
 
-I made an ERD of the tables I needed in pgAdmin. I mapped out the columns I wanted to use, what the relationships were and which were the Primary and Foreign Keys:
+I made an ERD of the tables I needed in pgAdmin. I mapped out the columns I wanted to use, what the relationships were and which were the Primary and Foreign Keys.
+
+This ERD captures the story-chapter-user relationships:
 
 ![ERD](docs/documentation/erd-1.jpg)
 
+And this ERD shows the relationship between the users and the mail table for the `mails` app.
 
-#### pgAdmin
+![ERD](docs/documentation/erd-2.jpg)
 
-I successfully set up the connection between Render and pgAdmin:
-
-![pgAdmin](docs/documentation/pgadmin-1.jpg)
 <br>
 <br>
 
 ### Frontend
 
-I used HTML, CSS (powered by Bootstrap) and Javascript to build the frontend. I used Bootstrap 4 rather than five, as some of the class tags used in the course examples used 4.
+I used HTML, CSS (powered by Bootstrap) and Javascript to build the frontend.
 
-I used Django templates the build the pages. The page headers, navigation etc. are all in the base.html file, which is used on each page.
+I used Django templates the build the pages.
 
-## Core features
+## 2. Core features
 
 ### User management
 
@@ -184,15 +177,15 @@ Users can:
 
 - Register, login and logout via the register.html, login.html and logout.html templates
 - Edit their personal details, including adding a profile picture
-- Reset their password via an automated email, sent from a burner Gmail account (read more on this below)
+- Reset their password via an automated email, sent from a burner Gmail account (read more on this in Challenges below)
 
 ### Data storage
 
 #### Stories app
 The main purpose of the site is to allow writers to share their fanfiction stories online. To this end, I set up models to capture metadata around stories (title, genre, summary, etc) as well as a separate table for the chapter content itself. 
 
-Example: The user first creates a story. This is added to the `stories_story` table. It contains metadata like title, genre, fandom, cover image, and the author's id (via a foreign key from the `auth_user` table).
-The user can then create chapters, which contain the actual story. Each chapter is a row in the `stories_chapter` table. There, the `story_id` column uses a foreign key from the `stories_story` table. It's a one-to-many relationship, where one story can have many chapters.
+Example: The user first creates a story. This is added to the `stories_story` table. It contains metadata like title, genre, fandom, cover image, and the author's id (via a foreign key from the `auth_user` table).<br>
+The user can then create chapters, which contain the actual story content. Each chapter is a row in the `stories_chapter` table. There, the `story_id` column uses a foreign key from the `stories_story` table. It's a one-to-many relationship, where one story can have many chapters.
 
 It was also important to allow the user to save a draft of their story prior to publication. This is stored in the `status` column of `stories_story`.
 
@@ -208,7 +201,9 @@ Another significant area of data storage was for the messaging system. I created
 
 When a user writes a message, it's added as a new row to the `mails_mail` table. The `sender_id` and `recipient_id` columns use foreign keys from the `auth_user` table, i.e. they record which users are sending and receiving the messages.  
 
-## User interface
+Note: The `mails` app is currently quite basic, but with more time I would like to add additional features such as the ability to reply. 
+
+## 3. User interface
 
 ### Bootstrap
 
@@ -219,18 +214,20 @@ Note that I used Bootstrap 4 rather than 5, as some of the class tags used in th
 ### HTML templates
 
 I used Django templates the build the pages. The  headers, navigation etc. are all in the base.html file, which is used on each page.
-I created a second block in the base template, for the 'actions sidebar'. I changed it depending on the context, e.g. when reading a chapter, the actions are replaced with the list of chapters with links.
+
+I created a second block in the base template, for the 'actions sidebar'. It changes depending on the context, e.g. when reading a chapter, the actions are replaced with the list of chapters with links.
 
 ### Javascript
 
 I have included 2 notable examples of Javascript functionality in the site:
 
-#### 1. Drag-and-drop chapter reorder
+#### a. Drag-and-drop chapter reorder
 
 On the story detail pages (on desktop), the user can drag and drop the chapters by grabbing the handles to the left of the chapter names. This reorders the chapters. I used the JS library Sortable for the drag and drop functionality.
+
 My first draft required the user to press a 'Save chapter order' button after they'd rearranged the chapters. This was not great UX, so I revised the JS so that dragging and dropping a chapter to a new position automatically updated the database. This made for a much smoother UX.
 
-#### 2. Word count
+#### b. Word count
 My second example of Javascript is more basic but also improves the UX.  On the `/add-chapter` form, I believed it would be useful for authors to see a word count when they're writing. So, I used JS to show a word and character count under the text area field.
 
 
@@ -239,7 +236,7 @@ My second example of Javascript is more basic but also improves the UX.  On the 
 I followed the course lectures to ensure that the site followed best practices for data encryption. All passwords are hashed in the database. 
 The password reset successfully uses a burner Gmail account to send emails to users (see the Challenges section for more on this).
 
-I made sure that only logged-in users could see certain areas of the site (e.g. account pages). For function-based views, I used decorators such as `@login_required`. For class-based views, I used mixins such as `LoginRequiredMixin`.
+I made sure that only logged-in users could see certain areas of the site (e.g. for writing stories). For function-based views, I used decorators such as `@login_required`. For class-based views, I used mixins such as `LoginRequiredMixin`.
 
 I ensured that only the authors of a story are able to edit it. For class-based views, I used `UserPassesTestMixin` and `test_func` to check that the user was the author of the story or chapter.
 
@@ -248,6 +245,10 @@ For the admin dashboard, I used the standard Django distinction between staff an
 ## Extension capabilities
 
 The site is fully capable of future extension. I hope to eventually rebuild the frontend using React. I also hope to use 3rd-party APIs such as Resend (see Challenges below).
+The `mails` app is quite basic at the moment, and I would like to develop it further.
+
+<br>
+<br>
 
 # Challenges faced
 
@@ -265,7 +266,7 @@ Ideally, I would switch over to a different service such as Resend, but I didn't
 
 ### Default images
 
-I followed Yoni's lesson on changing over from Pillow to Cloudinary so it was largely straightforward. However, I encountered issues with the default images. It took me a while to realise that they should be placed in the relevant static folders, rather than the media folder.
+I followed Yoni's lesson on changing over from Pillow to Cloudinary so it was largely straightforward. However, I encountered issues with the default images. It took me a while to realise that they should be placed in the relevant static folders, rather than the media folder. They work fine now.
 
 
 <br>
@@ -285,10 +286,23 @@ if 'test' in sys.argv:
 ```
 
 ### test_stories_list_view
-This didn't work. Then I realised that stories are created as draft by default, so wouldn't appear on the page. 
+This, the first test I created, was throwing an error in the Terminal. Then I realised that stories are created as draft by default, and so the test story was effectively invisible. So, in the `setUp`, I set `status` to `published`. This solved the problem for this and other tests. 
 
 ### test_create_post_view
-I couldn't figure out why this test kept failing, so I used `print(response.context['form'].errors)` to see what error messages the page was throwing. The required `genre` selct was the problem.  I had to figure out how to pull in a genre from the Genre table, which was messy.
+I couldn't figure out why this test kept failing, so I used `print(response.context['form'].errors)` to see what error messages the page was throwing. The required `genre` select was the problem.  I had to figure out how to pull in a genre from the Genre table, which took a while.
 
 ### test_update_story_view
-Again I had to add all required fields here.  The status was the problem this time, i.e. it was a required field that I needed to include in the test.
+Again I had to add all required fields here.  The `status` was the problem this time, i.e. it was a required field that I needed to include in the test.
+
+<br>
+<br>
+
+# Additional notes
+
+## pyproject.toml
+
+I used this instead of a requirements.txt file. From research, it seems that this is sufficient for deployment so I left out the requirements.txt file.
+
+## Pagination
+
+Pagination can be seen on the homepage, once the number of published stories is 5 or more.
