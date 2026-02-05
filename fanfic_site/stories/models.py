@@ -75,4 +75,4 @@ class Chapter(models.Model):
         unique_together = ('story', 'number')
 
     def __str__(self):
-        return f"{self.story.title} – Chapter {self.number}"
+        return f"{self.story.title} - Chapter {self.number}"

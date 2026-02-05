@@ -102,17 +102,7 @@ I created basic wireframes in Figma for mobile and desktop, with the mobile layo
 <br>
 <br>
 
-## Databases and tables
 
-### ERD
-
-
-
-#### 
-[MUST] 
-
-#### 
-[MUST] 
 
 # My development process
 ## How I went about it
@@ -125,7 +115,7 @@ The following is a step-by-step account of how I did the project, which closely 
 - Designed the database schema
 - Set up the Django environment as per the tutorials
 - Created superuser
-- Created the first model, Story, and added some stories via a shell
+- Created the first model, `Story`, and added some stories via a shell
 - Updated the homepage to loop through stories
 - Set up Registration page and successfully registered new users
 - Installed Crispy Forms with Bootstrap styling
@@ -139,11 +129,11 @@ The following is a step-by-step account of how I did the project, which closely 
 - Created a new form for adding chapters, and allowed authors to add chapters to their stories
 - Added publish/unpublish functionality
 - Set it up so that if a book was published once & then unpublished, the original publish date would persist
-- Created a new app called Mails to handle user-to-user messaging (as per the assignment requirements)
+- Created a new app called `Mails` to handle user-to-user messaging (as per the assignment requirements)
 - Continued updating the UI
 - Added a word count using javascript to the Add chapter section
 - On the story detail page, I used SortableJS to set up a drag-and-drop reordering of chapters
-- Went through the process of deploying to Render.com
+- Spent a lot of time troubleshooting deploying the site to Render.com.
 - Fixed bug where not uploading a cover image crashed everything
 - Set up Cloudinary and updated the Profile model, removing references to Pillow
 - Changed Story model to work with Cloudinary and updated templates
@@ -151,17 +141,154 @@ The following is a step-by-step account of how I did the project, which closely 
 - Tidied up formatting, CSS etc, and cleared up the majority of 'Problems' from the Terminal
 - Wrote docstrings for all model classes
 
+<br>
+<br>
+
+# Project Details
+
+## Application structure
+### Backend Framework
+I followed Yoni's lessons to set up the Django framework.
+
+### Database
+I initially worked locally with SQLite, and when deploying I changed the database to PostgreS.
+
+#### ERD
+
+I made an ERD of the tables I needed in pgAdmin. I mapped out the columns I wanted to use, what the relationships were and which were the Primary and Foreign Keys:
+
+![ERD](docs/documentation/erd-1.jpg)
 
 
-Future tests:
-With more time, I wanted to write tests for all models across all 3 apps (stories, user and mails). But, given that I was running out of time, I focused on the models for just the stories app. I also installed Coverage. With more time, I would ensure testing was set up for all apps, models, etc.
+#### pgAdmin
 
-test_stories_list_view(self):
-This didn't work. Then I realised that stories are created as draft by default, so wouldn't appear on the page. So, I researched and add an if statement to settings.py
+I successfully set up the connection between Render and pgAdmin:
 
-test_create_post_view(self):
-The genres field is a messy one. I had to figure out how to do dummy data here.
-Used print(response.context['form'].errors)  to see what error messages the page was throwing.
+![pgAdmin](docs/documentation/pgadmin-1.jpg)
+<br>
+<br>
 
-test_update_story_view(self)
-Again I had to add all required fields here.  The status was the new required field. I had to factor that into this test.
+### Frontend
+
+I used HTML, CSS (powered by Bootstrap) and Javascript to build the frontend. I used Bootstrap 4 rather than five, as some of the class tags used in the course examples used 4.
+
+I used Django templates the build the pages. The page headers, navigation etc. are all in the base.html file, which is used on each page.
+
+## Core features
+
+### User management
+
+Again, I followed Yoni's lessons closely here to ensure that the user management structure was set up correctly and met best practices.  I created the `users` app, and extended the built-in `get_user_model` with my `Profile` model. 
+
+Users can:
+
+- Register, login and logout via the register.html, login.html and logout.html templates
+- Edit their personal details, including adding a profile picture
+- Reset their password via an automated email, sent from a burner Gmail account (read more on this below)
+
+### Data storage
+
+#### Stories app
+The main purpose of the site is to allow writers to share their fanfiction stories online. To this end, I set up models to capture metadata around stories (title, genre, summary, etc) as well as a separate table for the chapter content itself. 
+
+Example: The user first creates a story. This is added to the `stories_story` table. It contains metadata like title, genre, fandom, cover image, and the author's id (via a foreign key from the `auth_user` table).
+The user can then create chapters, which contain the actual story. Each chapter is a row in the `stories_chapter` table. There, the `story_id` column uses a foreign key from the `stories_story` table. It's a one-to-many relationship, where one story can have many chapters.
+
+It was also important to allow the user to save a draft of their story prior to publication. This is stored in the `status` column of `stories_story`.
+
+It's also worth noting that I gave Genre its own table, `stories_genre`. All that's in it is a list of genres. From research, this seemed like best practice, as this list can now be easily added to by the superuser in the admin panel.
+
+Image storage was important for this project, as writers would want to store 'cover images' for their stories. I initualy used Pillow for this, as per the course lectures, and then eventually switched to Cloudinary when deploying. See Challenges below for issues encountered while deploying.
+
+Note: For the sake of 'authenticity', once a story is published, its date is fixed (i.e. if it's subsequently changed from published to draft mode, the original publication date still stands).
+
+#### Mails app
+
+Another significant area of data storage was for the messaging system. I created an app called `mails` to allow users to message each other. Users can message writers via their story detail pages. Those messages appear in the writers' private mailbox, which they can then archive if they wish. All archived messages appear on a private archive page.
+
+When a user writes a message, it's added as a new row to the `mails_mail` table. The `sender_id` and `recipient_id` columns use foreign keys from the `auth_user` table, i.e. they record which users are sending and receiving the messages.  
+
+## User interface
+
+### Bootstrap
+
+I used a mix of Bootstrap and CSS to create responsive layouts that work on desktop and mobile. 
+
+Note that I used Bootstrap 4 rather than 5, as some of the class tags used in the course examples used 4.
+
+### HTML templates
+
+I used Django templates the build the pages. The  headers, navigation etc. are all in the base.html file, which is used on each page.
+I created a second block in the base template, for the 'actions sidebar'. I changed it depending on the context, e.g. when reading a chapter, the actions are replaced with the list of chapters with links.
+
+### Javascript
+
+I have included 2 notable examples of Javascript functionality in the site:
+
+#### 1. Drag-and-drop chapter reorder
+
+On the story detail pages (on desktop), the user can drag and drop the chapters by grabbing the handles to the left of the chapter names. This reorders the chapters. I used the JS library Sortable for the drag and drop functionality.
+My first draft required the user to press a 'Save chapter order' button after they'd rearranged the chapters. This was not great UX, so I revised the JS so that dragging and dropping a chapter to a new position automatically updated the database. This made for a much smoother UX.
+
+#### 2. Word count
+My second example of Javascript is more basic but also improves the UX.  On the `/add-chapter` form, I believed it would be useful for authors to see a word count when they're writing. So, I used JS to show a word and character count under the text area field.
+
+
+## Security features
+
+I followed the course lectures to ensure that the site followed best practices for data encryption. All passwords are hashed in the database. 
+The password reset successfully uses a burner Gmail account to send emails to users (see the Challenges section for more on this).
+
+I made sure that only logged-in users could see certain areas of the site (e.g. account pages). For function-based views, I used decorators such as `@login_required`. For class-based views, I used mixins such as `LoginRequiredMixin`.
+
+I ensured that only the authors of a story are able to edit it. For class-based views, I used `UserPassesTestMixin` and `test_func` to check that the user was the author of the story or chapter.
+
+For the admin dashboard, I used the standard Django distinction between staff and non-staff user roles.
+
+## Extension capabilities
+
+The site is fully capable of future extension. I hope to eventually rebuild the frontend using React. I also hope to use 3rd-party APIs such as Resend (see Challenges below).
+
+# Challenges faced
+
+Challenges I faced include:
+
+## Deploying the Render.com
+
+As expected, I encountered many issues when deploying.
+
+### Reset Password works locally
+
+Locally, I successfully set up the Reset Password feature to work with a burner Gmail account. However, when I deployed, I couldn't get it to work. After much tinkering with the code, it appears that Render.com is blocking SMTP services for the free tier.  https://render.com/changelog/free-web-services-will-no-longer-allow-outbound-traffic-to-smtp-ports
+
+Ideally, I would switch over to a different service such as Resend, but I didn't have time to make the switch. But please note that it works locally.
+
+### Default images
+
+I followed Yoni's lesson on changing over from Pillow to Cloudinary so it was largely straightforward. However, I encountered issues with the default images. It took me a while to realise that they should be placed in the relevant static folders, rather than the media folder.
+
+
+<br>
+<br>
+
+# Testing
+
+I followed Yoni's lecture on testing, writing tests and following the Red Green Refactor method. I wanted to write tests for all 3 apps (`stories`, `users` and `mails`). But, given that I was running out of time, I focused on the models for just the `stories` app. With more time, I would ensure testing was set up for all apps, models, etc.
+
+Challenges I faced include:
+
+### Images
+Tests that involved images kept failing (i.e. the story cover image). I researched a workaround and went for the simplest route of adding an if statement to `settings.py`: 
+```
+if 'test' in sys.argv:
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage' 
+```
+
+### test_stories_list_view
+This didn't work. Then I realised that stories are created as draft by default, so wouldn't appear on the page. 
+
+### test_create_post_view
+I couldn't figure out why this test kept failing, so I used `print(response.context['form'].errors)` to see what error messages the page was throwing. The required `genre` selct was the problem.  I had to figure out how to pull in a genre from the Genre table, which was messy.
+
+### test_update_story_view
+Again I had to add all required fields here.  The status was the problem this time, i.e. it was a required field that I needed to include in the test.
