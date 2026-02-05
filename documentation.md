@@ -202,16 +202,24 @@ Users can:
 #### Stories app
 The main purpose of the site is to allow writers to share their fanfiction stories online. To this end, I set up models to capture metadata around stories (title, genre, summary, etc) as well as a separate table for the chapter content itself. 
 
-Example: The user first creates a story. This is added to the `stories_story` table. It contains metadata like title, genre, fandom, cover image, and the author's id (via a foreign key from the `auth_user` table).<br>
-The user can then create chapters, which contain the actual story content. Each chapter is a row in the `stories_chapter` table. There, the `story_id` column uses a foreign key from the `stories_story` table. It's a one-to-many relationship, where one story can have many chapters.
+Example: The user first creates a story. This is added to the `stories_story` table. It contains metadata like title, genre, fandom, cover image, and the author's id (via a foreign key from the `auth_user` table).
 
 It was also important to allow the user to save a draft of their story prior to publication. This is stored in the `status` column of `stories_story`.
 
+Note: For the sake of 'authenticity', once a story is published, its date is fixed (i.e. if it's subsequently changed from published to draft mode, the original publication date still stands).
+
+#### Creating chapters
+
+After creating a story, the user can then create chapters. These contain the actual story content. 
+
+Each chapter is a row in the `stories_chapter` table. There, the `story_id` column uses a foreign key from the `stories_story` table. It's a one-to-many relationship, where one story can have many chapters.
+
+#### Storing genre separately
 It's also worth noting that I gave Genre its own table, `stories_genre`. All that's in it is a list of genres. From research, this seemed like best practice, as this list can now be easily added to by the superuser in the admin panel.
 
+#### Image storage
 Image storage was important for this project, as writers would want to store 'cover images' for their stories. I initualy used Pillow for this, as per the course lectures, and then eventually switched to Cloudinary when deploying. See Challenges below for issues encountered while deploying.
 
-Note: For the sake of 'authenticity', once a story is published, its date is fixed (i.e. if it's subsequently changed from published to draft mode, the original publication date still stands).
 
 #### Mails app
 
@@ -219,7 +227,7 @@ Another significant area of data storage was for the messaging system. I created
 
 When a user writes a message, it's added as a new row to the `mails_mail` table. The `sender_id` and `recipient_id` columns use foreign keys from the `auth_user` table, i.e. they record which users are sending and receiving the messages.  
 
-Note: The `mails` app is currently quite basic, but with more time I would like to add additional features such as the ability to reply. 
+Note: The `mails` app is currently quite basic, but with more time I would like to add additional features such as the ability to reply, show conversations, etc. 
 
 <br>
 
@@ -289,9 +297,13 @@ Ideally, I would switch over to a different service such as Resend, but I didn't
 
 ### Default images
 
-I followed Yoni's lesson on changing over from Pillow to Cloudinary so it was largely straightforward. However, I encountered issues with the default images. It took me a while to realise that they should be placed in the relevant static folders, rather than the media folder. They work fine now.
+I followed Yoni's lesson on changing over from Pillow to Cloudinary so it was largely straightforward. However, I encountered issues with the default images. It took me a while to realise that with the new Cloudinary approach, the defaults should be placed in the relevant static folders, rather than the media folder. They work fine now.
 
-### 
+## Mails app
+
+I initially tried to use a third party Django app to handle the user-to-user messaging system. I tried django-postman but struggled to get it to work. I ended up abandoning the third party option and instead created a new app myself called `mails`.
+
+With more time, I would research other third party apps.
 
 
 <br>
