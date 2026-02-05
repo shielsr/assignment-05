@@ -1,10 +1,10 @@
 # My design decisions
 
-## Personas
+## User stories
+
+### Personas
 * Authors
 * Readers
-
-<br>
 
 ### Reader user stories:
 
@@ -68,7 +68,8 @@
 ## Content
 
 The site will include:
-- Homepage showing published stories, links, and possible user actions
+- Homepage showing published stories, pagination, nav bar 
+- Sidebar containing context-related user actions
 - Full authentication (register, login, logout, etc)
 - Profile/account page
 - Private messaging inbox and archive
@@ -115,8 +116,8 @@ The following is a step-by-step account of how I did the project, which closely 
 - Created login and logout pages and completed user authentication setup
 - Added editable profile pages and resizable profile picture upload
 - Set up class-based views for CRUD operations
-- Pagination added
-- New page showing all of a user's stories
+- Pagination added to the homepage
+- New page showing a list of all stories from a user, with pagination
 - Set up a burner email account and created the Password Reset infrastructure
 - Swapped Bootstrap 5 for Bootstrap 4 to catch some legacy style classes
 - Created a new form for adding chapters, and allowed authors to add chapters to their stories
@@ -126,7 +127,7 @@ The following is a step-by-step account of how I did the project, which closely 
 - Continued updating the UI
 - Added a word count using javascript to the Add chapter section
 - On the story detail page, I used SortableJS to set up a drag-and-drop reordering of chapters
-- Spent a lot of time troubleshooting deploying the site to Render.com.
+- Spent a lot of time troubleshooting the deployment of the site to Render.com.
 - Fixed bug where not uploading a cover image crashed everything
 - Set up Cloudinary and updated the Profile model, removing references to Pillow
 - Changed Story model to work with Cloudinary and updated templates
@@ -150,7 +151,7 @@ I initially worked locally with SQLite, and when deploying I changed the databas
 
 I made an ERD of the tables I needed in pgAdmin. I mapped out the columns I wanted to use, what the relationships were and which were the Primary and Foreign Keys.
 
-This ERD captures the story-chapter-user relationships:
+This ERD captures the relationships between the `stories_story`, `stories_chapter`, `stories_genre` and `auth_user` tables:
 
 ![ERD](docs/documentation/erd-1.jpg)
 
@@ -159,13 +160,14 @@ And this ERD shows the relationship between the users and the mail table for the
 ![ERD](docs/documentation/erd-2.jpg)
 
 <br>
-<br>
 
 ### Frontend
 
 I used HTML, CSS (powered by Bootstrap) and Javascript to build the frontend.
 
 I used Django templates the build the pages.
+
+<br>
 
 ## 2. Core features
 
@@ -203,6 +205,8 @@ When a user writes a message, it's added as a new row to the `mails_mail` table.
 
 Note: The `mails` app is currently quite basic, but with more time I would like to add additional features such as the ability to reply. 
 
+<br>
+
 ## 3. User interface
 
 ### Bootstrap
@@ -230,8 +234,9 @@ My first draft required the user to press a 'Save chapter order' button after th
 #### b. Word count
 My second example of Javascript is more basic but also improves the UX.  On the `/add-chapter` form, I believed it would be useful for authors to see a word count when they're writing. So, I used JS to show a word and character count under the text area field.
 
+<br>
 
-## Security features
+## 4. Security features
 
 I followed the course lectures to ensure that the site followed best practices for data encryption. All passwords are hashed in the database. 
 The password reset successfully uses a burner Gmail account to send emails to users (see the Challenges section for more on this).
@@ -242,7 +247,9 @@ I ensured that only the authors of a story are able to edit it. For class-based 
 
 For the admin dashboard, I used the standard Django distinction between staff and non-staff user roles.
 
-## Extension capabilities
+<br>
+
+## 5. Extension capabilities
 
 The site is fully capable of future extension. I hope to eventually rebuild the frontend using React. I also hope to use 3rd-party APIs such as Resend (see Challenges below).
 The `mails` app is quite basic at the moment, and I would like to develop it further.
@@ -267,6 +274,8 @@ Ideally, I would switch over to a different service such as Resend, but I didn't
 ### Default images
 
 I followed Yoni's lesson on changing over from Pillow to Cloudinary so it was largely straightforward. However, I encountered issues with the default images. It took me a while to realise that they should be placed in the relevant static folders, rather than the media folder. They work fine now.
+
+### 
 
 
 <br>
