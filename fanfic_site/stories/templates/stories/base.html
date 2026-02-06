@@ -79,25 +79,35 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item"> <a class="nav-item nav-link" href="{% url 'story-create' %}">Write a new
                 story</a></li>
-            <li class="list-group-item"> <a class="nav-item nav-link" href="{% url 'mails:mailbox' %}">Go to my mailbox</a></li>
-            <li class="list-group-item"> <a class="nav-item nav-link" href="{% url 'profile' %}">View my account</a></li>
+            <li class="list-group-item"> <a class="nav-item nav-link" href="{% url 'mails:mailbox' %}">Go to my
+                mailbox</a></li>
+            <li class="list-group-item"> <a class="nav-item nav-link" href="{% url 'profile' %}">View my account</a>
+            </li>
 
-{% if request.user.is_staff %}
- <li class="list-group-item">            <a class="nav-item nav-link" href="{% url 'admin:index' %}">View admin dashboard</a>
-</li>
-{% endif %}
+            {% if request.user.is_staff %}
+            <li class="list-group-item"> <a class="nav-item nav-link" href="{% url 'admin:index' %}">View admin
+                dashboard</a>
+            </li>
+            {% endif %}
           </ul>
         </div>
         {% endblock %}
       </div>
 
-   
+
     </div>
   </main>
+  <footer class="m-3 text-center">
+    <p>Fanfictastic is &copy; Rob Shiels 2026</p>
+  </footer>
 
   <!-- Bootstrap JS (with Popper)-->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

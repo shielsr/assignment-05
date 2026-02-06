@@ -59,7 +59,7 @@ Once they fill out the form, they are directed to /login, where they can enter t
 
 ## Logging into admin
 
-To access the admin dashboard, use the username rob and password XXXXXXXX (see the version of readme.md in the .zip submission for the actual password)
+To access the admin dashboard, use the username XXXXXXX and password XXXXXXXX (see the version of readme.md in the .zip submission for the actual details)
 
 
 <br>
@@ -74,39 +74,55 @@ The homepage shows a list of all the published stories.
 
 Logged-in users click 'New story' in the nav bar or 'Write a new story' in the Actions sidebar to open the form.
 
-They fill out the form and submit it. This inserts a new row in the `order`table and a new row in the `pumpkin_design` table.
+They fill out the form and submit it.
 
-On the following /order page, the user can add another pumpkin to their order, which takes them to the /add page where they can create another design.
+On the story detail page, the user can add chapters, edit their story, delete their story, or publish it as is.
 
 <br>
 
-## Cancelling an order
+## Adding chapters
 
-Cancelling an order deletes that row from the `order` table and 'cascade-deletes' all related rows from the `pumpkin_design` table. 
+Writers click 'Add new chapter'. This takes them to a form, where they can write their story.
 
-Customers can cancel an order in two places:
+<br>
 
-1. On the /order page before they've submitted
+## Reordering chapters
 
-2. On the /my-account page, where they can cancel an order as long as it hasn't been marked as 'Delivered' (at which point the Cancel button is not shown)
+On the story detail page on desktop, users can change the order of their chapters. Simply the drag and drop handles by the chapter names.
+
+<br>
+
+## Draft stories
+
+Draft stories don't appear on the homepage. To find your draft story again, go to your account page at /profile and scroll to the bottom.
+
+<br>
+
+## Delete a story
+
+On the story detail page, click 'Delete story'. The user will be taken to a confirmation page.
 
 <br>
 
 ##  View my account
 
-Only customers can see links to the /my-account page
+Logged-in users can see their account on the /profile page
 
-Customers can view their previous orders here, along with in-progress ones. As mentioned above, they can cancel orders as long as their status is not `Delivered`.
+They can edit their details or change the default profile pic here.
 
 <br>
 
-## Admin
+## Sending messages
 
-If a user logs in as an admin (see 'Logging in' above) they can see all orders that can be read from the `order` database table, along with the customer details and pumpkins connected to the order.
+Users can send messages to writers.
 
-Admins can edit the status of orders. This updates the relevant entry in the database.
+Go to the story detail page of a story written by a different user.
 
-They can also see statistics.
+Click 'Message the author' and fill out the form.
 
-NOTE: If an admin sets an order to `Delivered`, then the 'Cancel order' button no longer appears for the customer.
+<br>
+
+## Receiving messages
+
+Users can see messages they've received by clicking 'Mailbox' in the navbar
 
