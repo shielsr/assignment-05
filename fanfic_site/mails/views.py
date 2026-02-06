@@ -7,8 +7,11 @@ from django.http import HttpResponseForbidden
 from django import forms
 from .models import Mail
 
-# Compose Mail
+
 class ComposeMailView(LoginRequiredMixin, CreateView):
+    """
+    View for writing and sending direct messages to other users
+    """
     model = Mail
     success_url = reverse_lazy('mails:mailbox')
 
@@ -51,8 +54,11 @@ class ComposeMailView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-# Mailbox (Inbox)
+
 class MailboxView(LoginRequiredMixin, ListView):
+    """
+    Private list of all the non-archived mails a user has received
+    """
     model = Mail
     template_name = 'mails/mailbox.html'
     context_object_name = 'mails'
@@ -60,8 +66,11 @@ class MailboxView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Mail.objects.filter(recipient=self.request.user, is_archived=False).order_by('-timestamp')
 
-# Archive a mail
+
 def archive_mail(request, pk):
+    """
+    Function for the 'Archive' button on a mail
+    """
     mail = get_object_or_404(Mail, pk=pk)
     if mail.recipient != request.user:
         return HttpResponseForbidden("You don't have permission to archive this mail.")
@@ -69,8 +78,10 @@ def archive_mail(request, pk):
     mail.save()
     return redirect('mails:mailbox')
 
-# Unarchive a mail
 def unarchive_mail(request, pk):
+    """
+    Function to remove a mail from the archive
+    """
     mail = get_object_or_404(Mail, pk=pk)
     if mail.recipient != request.user:
         return HttpResponseForbidden("You don't have permission to unarchive this mail.")
@@ -78,8 +89,11 @@ def unarchive_mail(request, pk):
     mail.save()
     return redirect('mails:archived')
 
-# Archived Mails
+
 class ArchivedMailView(LoginRequiredMixin, ListView):
+    """
+    Private list showing all the received mails that a user has archived
+    """
     model = Mail
     template_name = 'mails/archived.html'
     context_object_name = 'mails'

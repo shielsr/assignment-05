@@ -6,7 +6,7 @@
 * Authors
 * Readers
 
-### Reader user stories:
+### Author user stories:
 
 #### 1. Write stories
 [MUST] As an author, I want to write fan fiction stories online, so I can share them with friends.
@@ -37,7 +37,7 @@
 
 <br>
 
-### Author user stories:
+### Reader user stories:
 
 #### 1. Story metadata
 [MUST] As a reader, I want to see a story summary and metadata, so I can judge whether the story would be interesting to read.
@@ -52,7 +52,6 @@
 
 ### Future stories:
 
-
 #### 1. Add co-authors
 [SHOULD] As an author, I want to add additional authors to my stories, so I can show who my co-authors are.
 
@@ -60,7 +59,7 @@
 [SHOULD] As a reader, I want to search for stories by genre or fandom, so I can find stories I want to read.
 
 #### 3. Mark as read
-[MUST] As a reader, I want to mark stories as 'read', so I can keep track of what I've read.
+[SHOULD] As a reader, I want to mark stories as 'read', so I can keep track of what I've read.
 
 <br>
 <br>

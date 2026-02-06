@@ -101,6 +101,9 @@ class StoryCreateView(LoginRequiredMixin, CreateView):
     
 @login_required
 def TogglePublish(request, pk):
+    """
+    Function for handling the 'Publish/Unpublish' button on story detail pages
+    """
     story = get_object_or_404(Story, pk=pk, author=request.user)
 
     if story.status == 'draft':
@@ -111,7 +114,6 @@ def TogglePublish(request, pk):
     elif story.status == 'published':
         story.status = 'draft'
 
-    # Optionally, leave hiatus stories unchanged
     story.save()
 
     return redirect('story-detail', pk=story.pk)
@@ -128,7 +130,7 @@ class StoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         story = self.get_object()
         return self.request.user == story.author
     
-class StoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView): # New class PostDeleteView created here
+class StoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Story
     success_url = "/"
 
@@ -173,6 +175,10 @@ class AddChapter(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 @login_required
 @require_POST
 def reorder_chapters(request, pk):
+    """
+    Function that handles the reordering of chapters on the story detail page.
+    This ties in with SortableJS and the chapter_reorder.js static file
+    """
     story = get_object_or_404(Story, pk=pk)
     
     # Check if user is the author
