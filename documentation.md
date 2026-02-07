@@ -27,7 +27,7 @@
 [MUST] As an author, I want to edit my published stories, so I can correct typos.
 
 #### 7. Genres
-[MUST] As an author, I want to put my stories in cateogires, so readers can see what genre they are.
+[MUST] As an author, I want to put my stories in categories, so readers can see what genre they are.
 
 #### 8. Sending and receiving messages
 [MUST] As an author, I want to receive messages from other users, so I can get feedback on my work.
@@ -146,7 +146,9 @@ The following is a step-by-step account of how I did the project, which closely 
 I followed Yoni's lessons to set up the Django framework.
 
 ### Database
-I initially worked locally with SQLite, and when deploying I changed the database to Postgres. I broken down what table and relationships I would neeed.
+I initially worked locally with SQLite, and when deploying I changed the database to Postgres. 
+
+At the planning stage, these are the tables and relationships I mapped out:
 
 Tables:
 * User
@@ -302,7 +304,7 @@ I followed Yoni's lesson on changing over from Pillow to Cloudinary so it was la
 
 ## Mails app
 
-I initially tried to use a third party Django app to handle the user-to-user messaging system. I tried django-postman but struggled to get it to work. I ended up abandoning the third party option and instead created a new app myself called `mails`.
+I initially tried to use a third party Django app to handle the user-to-user messaging system. I tried django-postman but struggled to get it to work. I ended up abandoning the third party option and instead created a basic new app myself called `mails`.
 
 With more time, I would research other third party apps.
 
@@ -310,15 +312,14 @@ With more time, I would research other third party apps.
 
 When doing a final check I noticed that the Profile objects in the dashboard looked like this:
 
-![Profile](docs/documentation/profile-01.jpg)
+![Profile](docs/documentation/profile-01.png)
 
-I realised that when following the Cloudinary lesson, the code in the Github (Unit 12) omits the `__str__` method. I restored it in my code and the Profile was fine.
+I realised that when following the Cloudinary lesson, the course lesson in Github (Unit 12) omits the `__str__` method. I restored it in my code and the Profile was fine.
 
 
-<br>
-<br>
 
-# Testing
+
+## Testing
 
 I followed Yoni's lecture on testing, writing tests and following the Red Green Refactor method. I wanted to write tests for all 3 apps (`stories`, `users` and `mails`). But, given that I was running out of time, I focused on the models for just the `stories` app. With more time, I would ensure testing was set up for all apps, models, etc.
 

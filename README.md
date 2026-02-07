@@ -86,9 +86,9 @@ Writers click 'Add new chapter'. This takes them to a form, where they can write
 
 <br>
 
-## Reordering chapters
+## Drag and drop chapter reorder
 
-On the story detail page on desktop, users can change the order of their chapters. Simply the drag and drop handles by the chapter names.
+On the story detail page on desktop, users can change the order of their chapters. Simply drag and drop the handles by the chapter names.
 
 <br>
 
@@ -126,3 +126,10 @@ Click 'Message the author' and fill out the form.
 
 Users can see messages they've received by clicking 'Mailbox' in the navbar
 
+<br>
+
+## Archived messages
+
+Messages can be archived from the Mailbox.
+
+Archived messages can then be seen in the private mails/archived page.
