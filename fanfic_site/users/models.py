@@ -23,3 +23,6 @@ class Profile(models.Model):
             )[0]
         else: # Fallback to static default image
             return static('users/default-profile.png')
+        
+    def __str__(self):
+        return self.user.username
