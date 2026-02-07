@@ -5,15 +5,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('stories', '0009_remove_story_rating'),
+        ("stories", "0009_remove_story_rating"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='story',
-            name='cover_image',
-            field=models.ImageField(blank=True, null=True, storage=cloudinary_storage.storage.MediaCloudinaryStorage(), upload_to='covers/'),
+            model_name="story",
+            name="cover_image",
+            field=models.ImageField(
+                blank=True,
+                null=True,
+                storage=cloudinary_storage.storage.MediaCloudinaryStorage(),
+                upload_to="covers/",
+            ),
         ),
     ]

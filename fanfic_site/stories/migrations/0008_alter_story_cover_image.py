@@ -4,15 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('stories', '0007_delete_message'),
+        ("stories", "0007_delete_message"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='story',
-            name='cover_image',
-            field=models.ImageField(blank=True, default='covers/default-cover.jpg', null=True, upload_to='covers/'),
+            model_name="story",
+            name="cover_image",
+            field=models.ImageField(
+                blank=True,
+                default="covers/default-cover.jpg",
+                null=True,
+                upload_to="covers/",
+            ),
         ),
     ]

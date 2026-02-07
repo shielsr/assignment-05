@@ -133,6 +133,7 @@ The following is a step-by-step account of how I did the project, which closely 
 - Wrote unit tests for the Story app
 - Tidied up formatting, CSS etc, and cleared up the majority of 'Problems' from the Terminal
 - Wrote docstrings for all model classes
+- Ran Ruff linter and formatter for a final tidy-up of the code
 
 <br>
 <br>
@@ -303,6 +304,14 @@ I followed Yoni's lesson on changing over from Pillow to Cloudinary so it was la
 I initially tried to use a third party Django app to handle the user-to-user messaging system. I tried django-postman but struggled to get it to work. I ended up abandoning the third party option and instead created a new app myself called `mails`.
 
 With more time, I would research other third party apps.
+
+## Missing Profile __str__
+
+When doing a final check I noticed that the Profile objects in the dashboard looked like this:
+
+![Profile](docs/documentation/profile-01.jpg)
+
+I realised that when following the Cloudinary lesson, the code in the Github (Unit 12) omits the `__str__` method. I restored it in my code and the Profile was fine.
 
 
 <br>

@@ -4,121 +4,126 @@ from django.urls import reverse
 from django.utils import timezone
 from .models import Story, Genre
 
+
 class StoryModelTests(TestCase):
     @classmethod
     def setUpTestData(cls):
-        cls.user = User.objects.create_user(username='testuser', password='12345')
-        cls.genre = Genre.objects.create(name='Fantasy')
+        cls.user = User.objects.create_user(username="testuser", password="12345")
+        cls.genre = Genre.objects.create(name="Fantasy")
         cls.story = Story.objects.create(
-            title='Test Story',
+            title="Test Story",
             author=cls.user,
-            summary='This is a test story',
-            fandom='Indiana Jones',
+            summary="This is a test story",
+            fandom="Indiana Jones",
             genre=cls.genre,
-            status='draft'
+            status="draft",
         )
-
 
     def test_story_content(self):
         story = Story.objects.get(id=1)
-        expected_title = f'{story.title}'
-        expected_author = f'{story.author}'
-        expected_summary = f'{story.summary}'
-        expected_fandom = f'{story.fandom}'
-        expected_genre = f'{story.genre}'
-        expected_status = f'{story.status}'
-        self.assertEqual(expected_title, 'Test Story')
-        self.assertEqual(expected_author, 'testuser')
-        self.assertEqual(expected_summary, 'This is a test story')
-        self.assertEqual(expected_fandom, 'Indiana Jones')
-        self.assertEqual(expected_genre, 'Fantasy')
-        self.assertEqual(expected_status, 'draft')
-        
-        
+        expected_title = f"{story.title}"
+        expected_author = f"{story.author}"
+        expected_summary = f"{story.summary}"
+        expected_fandom = f"{story.fandom}"
+        expected_genre = f"{story.genre}"
+        expected_status = f"{story.status}"
+        self.assertEqual(expected_title, "Test Story")
+        self.assertEqual(expected_author, "testuser")
+        self.assertEqual(expected_summary, "This is a test story")
+        self.assertEqual(expected_fandom, "Indiana Jones")
+        self.assertEqual(expected_genre, "Fantasy")
+        self.assertEqual(expected_status, "draft")
+
     def test_story_str_method(self):
         story = Story.objects.get(id=1)
         self.assertEqual(str(story), story.title)
-        
+
     def test_get_absolute_url(self):
         story = Story.objects.get(id=1)
-        self.assertEqual(story.get_absolute_url(), reverse('story-detail', args=[story.id]))
-        
+        self.assertEqual(
+            story.get_absolute_url(), reverse("story-detail", args=[story.id])
+        )
+
     def test_story_date_published_default(self):
         """Test that date_published is set by default"""
         self.assertIsNotNone(self.story.date_published)
         self.assertIsInstance(self.story.date_published, timezone.datetime)
-        
-        
+
+
 class StoryViewsTests(TestCase):
     def setUp(self):
         self.client = Client()
-        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.user = User.objects.create_user(username="testuser", password="12345")
         self.story = Story.objects.create(
             author=self.user,
-            title='Test Story',
-            summary='This is a test story',
-            status='published'
+            title="Test Story",
+            summary="This is a test story",
+            status="published",
         )
-        
+
     def test_stories_list_view(self):
-        url = reverse('stories-home')
+        url = reverse("stories-home")
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'This is a test story')
-        self.assertTemplateUsed(response, 'stories/home.html')
-        
+        self.assertContains(response, "This is a test story")
+        self.assertTemplateUsed(response, "stories/home.html")
+
     def test_story_detail_view(self):
-        url = reverse('story-detail', args=[self.story.id])
+        url = reverse("story-detail", args=[self.story.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.story.title)
-        
+
     def test_create_story_view(self):
-        self.client.login(username='testuser', password='12345')
-        response = self.client.get(reverse('story-create'))
+        self.client.login(username="testuser", password="12345")
+        response = self.client.get(reverse("story-create"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'stories/story_form.html')
-        self.genre = Genre.objects.create(name='Sci-fi')
-        
-        response = self.client.post(reverse('story-create'), {
-            'title': 'New title',
-            'summary': 'New text',
-            'fandom': 'Star Trek',
-            'genre': self.genre.id,
-            })
+        self.assertTemplateUsed(response, "stories/story_form.html")
+        self.genre = Genre.objects.create(name="Sci-fi")
+
+        response = self.client.post(
+            reverse("story-create"),
+            {
+                "title": "New title",
+                "summary": "New text",
+                "fandom": "Star Trek",
+                "genre": self.genre.id,
+            },
+        )
 
         self.assertEqual(response.status_code, 302)  # Redirect after POST
-        self.assertTrue(Story.objects.filter(title='New title').exists())
-
+        self.assertTrue(Story.objects.filter(title="New title").exists())
 
     def test_update_story_view(self):
-        self.client.login(username='testuser', password='12345')
-        url = reverse('story-update', kwargs={'pk': self.story.pk})
+        self.client.login(username="testuser", password="12345")
+        url = reverse("story-update", kwargs={"pk": self.story.pk})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'stories/story_form.html')
+        self.assertTemplateUsed(response, "stories/story_form.html")
 
-        self.genre = Genre.objects.create(name='Sci-fi')
-        self.assertEqual(self.story.title, 'Test Story')  # Check the original
+        self.genre = Genre.objects.create(name="Sci-fi")
+        self.assertEqual(self.story.title, "Test Story")  # Check the original
 
-        response = self.client.post(url, {
-            'title': 'Updated title',
-            'summary': 'New text',
-            'fandom': 'Star Trek',
-            'genre': self.genre.id,
-            'status': 'published'
-        })
+        response = self.client.post(
+            url,
+            {
+                "title": "Updated title",
+                "summary": "New text",
+                "fandom": "Star Trek",
+                "genre": self.genre.id,
+                "status": "published",
+            },
+        )
         self.story.refresh_from_db()
         self.assertEqual(response.status_code, 302)  # Redirect after POST
-        self.assertEqual(self.story.title, 'Updated title')
-        
-        
+        self.assertEqual(self.story.title, "Updated title")
+
     def test_delete_story_view(self):
-        self.client.login(username='testuser', password='12345')
-        url = reverse('story-delete', kwargs={'pk': self.story.pk})
+        self.client.login(username="testuser", password="12345")
+        url = reverse("story-delete", kwargs={"pk": self.story.pk})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'stories/story_confirm_delete.html')
+        self.assertTemplateUsed(response, "stories/story_confirm_delete.html")
 
         response = self.client.post(url)
         self.assertEqual(response.status_code, 302)  # Redirect after POST

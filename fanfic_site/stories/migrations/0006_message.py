@@ -7,25 +7,46 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('stories', '0005_remove_story_content_alter_story_status_and_more'),
+        ("stories", "0005_remove_story_content_alter_story_status_and_more"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Message',
+            name="Message",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('subject', models.CharField(max_length=120)),
-                ('body', models.TextField()),
-                ('sent_at', models.DateTimeField(default=django.utils.timezone.now)),
-                ('is_read', models.BooleanField(default=False)),
-                ('archived_by_sender', models.BooleanField(default=False)),
-                ('archived_by_recipient', models.BooleanField(default=False)),
-                ('recipient', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='received_messages', to=settings.AUTH_USER_MODEL)),
-                ('sender', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sent_messages', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("subject", models.CharField(max_length=120)),
+                ("body", models.TextField()),
+                ("sent_at", models.DateTimeField(default=django.utils.timezone.now)),
+                ("is_read", models.BooleanField(default=False)),
+                ("archived_by_sender", models.BooleanField(default=False)),
+                ("archived_by_recipient", models.BooleanField(default=False)),
+                (
+                    "recipient",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="received_messages",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "sender",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="sent_messages",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

@@ -7,35 +7,56 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('stories', '0001_initial'),
+        ("stories", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='story',
-            name='co_author',
+            model_name="story",
+            name="co_author",
         ),
         migrations.AlterField(
-            model_name='story',
-            name='author',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='stories', to=settings.AUTH_USER_MODEL),
+            model_name="story",
+            name="author",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="stories",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.CreateModel(
-            name='Chapter',
+            name="Chapter",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100)),
-                ('content', models.TextField()),
-                ('number', models.PositiveIntegerField()),
-                ('date_published', models.DateTimeField(default=django.utils.timezone.now)),
-                ('story', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='chapters', to='stories.story')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=100)),
+                ("content", models.TextField()),
+                ("number", models.PositiveIntegerField()),
+                (
+                    "date_published",
+                    models.DateTimeField(default=django.utils.timezone.now),
+                ),
+                (
+                    "story",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="chapters",
+                        to="stories.story",
+                    ),
+                ),
             ],
             options={
-                'ordering': ['number'],
-                'unique_together': {('story', 'number')},
+                "ordering": ["number"],
+                "unique_together": {("story", "number")},
             },
         ),
     ]

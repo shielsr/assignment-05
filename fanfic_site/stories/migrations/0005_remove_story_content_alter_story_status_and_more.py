@@ -4,24 +4,27 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('stories', '0004_story_cover_image'),
+        ("stories", "0004_story_cover_image"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='story',
-            name='content',
+            model_name="story",
+            name="content",
         ),
         migrations.AlterField(
-            model_name='story',
-            name='status',
-            field=models.CharField(choices=[('draft', 'Draft (private)'), ('published', 'Published')], default='draft', max_length=20),
+            model_name="story",
+            name="status",
+            field=models.CharField(
+                choices=[("draft", "Draft (private)"), ("published", "Published")],
+                default="draft",
+                max_length=20,
+            ),
         ),
         migrations.AlterField(
-            model_name='story',
-            name='summary',
+            model_name="story",
+            name="summary",
             field=models.TextField(max_length=500),
         ),
     ]

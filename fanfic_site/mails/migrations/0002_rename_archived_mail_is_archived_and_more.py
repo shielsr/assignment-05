@@ -5,33 +5,32 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('mails', '0001_initial'),
+        ("mails", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='mail',
-            old_name='archived',
-            new_name='is_archived',
+            model_name="mail",
+            old_name="archived",
+            new_name="is_archived",
         ),
         migrations.RemoveField(
-            model_name='mail',
-            name='created_at',
+            model_name="mail",
+            name="created_at",
         ),
         migrations.RemoveField(
-            model_name='mail',
-            name='read',
+            model_name="mail",
+            name="read",
         ),
         migrations.AddField(
-            model_name='mail',
-            name='timestamp',
+            model_name="mail",
+            name="timestamp",
             field=models.DateTimeField(default=django.utils.timezone.now),
         ),
         migrations.AlterField(
-            model_name='mail',
-            name='subject',
+            model_name="mail",
+            name="subject",
             field=models.CharField(max_length=255),
         ),
     ]
