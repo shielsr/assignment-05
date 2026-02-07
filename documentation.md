@@ -1,4 +1,4 @@
-# My design decisions
+# Documentation
 
 ## User stories
 
@@ -134,6 +134,7 @@ The following is a step-by-step account of how I did the project, which closely 
 - Tidied up formatting, CSS etc, and cleared up the majority of 'Problems' from the Terminal
 - Wrote docstrings for all model classes
 - Ran Ruff linter and formatter for a final tidy-up of the code
+- Added favicon.ico
 
 <br>
 <br>
@@ -204,7 +205,7 @@ The main purpose of the site is to allow writers to share their fanfiction stori
 
 Example: The user first creates a story. This is added to the `stories_story` table. It contains metadata like title, genre, fandom, cover image, and the author's id (via a foreign key from the `auth_user` table).
 
-It was also important to allow the user to save a draft of their story prior to publication. This is stored in the `status` column of `stories_story`.
+It was also important to allow the user to save a draft of their story prior to publication. This is stored in the `status` column of `stories_story`. I wrote a function-based view for this instead of a class-based view, as it's a simple function that I didn't want to overcomplicate.
 
 Note: For the sake of 'authenticity', once a story is published, its date is fixed (i.e. if it's subsequently changed from published to draft mode, the original publication date still stands).
 
@@ -227,7 +228,7 @@ Another significant area of data storage was for the messaging system. I created
 
 When a user writes a message, it's added as a new row to the `mails_mail` table. The `sender_id` and `recipient_id` columns use foreign keys from the `auth_user` table, i.e. they record which users are sending and receiving the messages.  
 
-Note: The `mails` app is currently quite basic, but with more time I would like to add additional features such as the ability to reply, show conversations, etc. 
+Note: The `mails` app is currently quite basic. I stuck to what was required in the course PDF guide ("Inbox functionality where users can send, receive, and archive messages"). Given more time I would like to add additional features such as the ability to reply, show conversations, etc.
 
 <br>
 
